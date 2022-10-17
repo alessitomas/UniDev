@@ -39,32 +39,6 @@ class CursoModel(db.Model):
         return {'id': self.id, 'nome':self.nome, 'linguagem':self.linguagem}
 
 
-class RespostasModel(db.Model):
-    _tablename__ = "respostas"
-
-    id_user = db.Column(db.Integer, primary_key=True )
-    id_exercicio = db.Column(db.Integer, primary_key=True )
-    resposta = db.Column(db.String(4000), nullable = False)
-
-    def __init__(self, id_user, id_exercicio, resposta):
-        self.id_user = id_user
-        self.id_exercicio = id_exercicio
-        self.resposta = resposta
-
-    def save(self):
-        db.session.add(self)
-        db.session.commit()
-
-    def delete(self):
-        db.session.delete(self)
-        db.session.commit()
-
-    @classmethod
-    def search_all(cls):
-        return cls.query.all()        
-
-    def toDict(self):
-        return {'id user': self.id_user, 'id exercicio':self.id_exercicio, 'resposta':self.resposta}
 
 class MatriculaModel(db.Model):
     _tablename__ = "matricula"
@@ -72,8 +46,8 @@ class MatriculaModel(db.Model):
     EM_ABERTO = 1
     CONCLUIDO = 0
 
-    id_user = db.Column(db.Integer, primary_key=True )
-    id_curso = db.Column(db.Integer, primary_key=True )
+    id_user = db.Column(db.ForeignKey(UsuarioModel.id_usuario), nullable=False)
+    id_curso = db.Column(db.ForeignKey(CursoModel.id_curso), nullable=False)
     inicio = db.Column(db.DateTime)
     status= db.Column(db.Boolean, default=1)
     fim= db.Column(db.DateTime)
@@ -104,12 +78,13 @@ class MatriculaModel(db.Model):
 class ExerciciosModel(db.Model):
     _tablename__ = "exercicios_model"
 
-    id_exercicio = db.Column(db.Integer, primary_key=True )
-    id_curso = db.Column(db.Integer, primary_key=True )
-    tela = db.Column(db.Integer, primary_key=True)
+    id_exercicio = db.Column(db.Integer, primary_key=True)
+    id_curso = db.Column(db.ForeignKey(CursoModel.id_curso), nullable=False)
+    tela = db.Column(db.Integer)
     #pytest 
-    enunciado = db.Column(db.String(4000))
-    gabarito = db.Column(db.String(4000))
+    enunciado = db.Column(db.String(4000), nullable = False)
+    gabarito = db.Column(db.String(4000), nullable = False)
+
     ##exercicios = db.relationship('CursoModel', secondary="curso_model", backref='exercicios_curso') 
 
     def __init__(self, id_exercicio, id_curso, tela, enunciado, gabarito):
@@ -133,3 +108,30 @@ class ExerciciosModel(db.Model):
 
     def toDict(self):
         return {'id exercicio': self.id_exercicio, 'id curso':self.id_curso, 'tela':self.tela, 'enunciado':self.enunciado, 'gabarito':self.gabarito}
+
+class RespostasModel(db.Model):
+    _tablename__ = "respostas_model"
+
+    id_usuario = db.Column(db.ForeignKey(UsuarioModel.id_usuario), nullable=False)
+    id_exercicio = db.Column(db.ForeignKey(ExerciciosModel.id_exercicio), nullable=False)
+    resposta = db.Column(db.String(4000), nullable = False)
+
+    def __init__(self, id_user, id_exercicio, resposta):
+        self.id_user = id_user
+        self.id_exercicio = id_exercicio
+        self.resposta = resposta
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    @classmethod
+    def search_all(cls):
+        return cls.query.all()        
+
+    def toDict(self):
+        return {'id user': self.id_user, 'id exercicio':self.id_exercicio, 'resposta':self.resposta}

@@ -1,7 +1,7 @@
 from flask_restful import Resource
 from flask import request, jsonify
 import sqlalchemy
-from model.modelos import CursoModel, RespostasModel, MatriculaModel
+from model.modelos import CursoModel, RespostasModel, MatriculaModel, ExerciciosModel
 
 
 class Curso(Resource):
@@ -107,17 +107,34 @@ class Matricula(Resource):
     
 class Exercicio(Resource):
 
-    def post(self, id_curso, id_user):
+    def get(self, id_exercicio):
+        exercicio = ExerciciosModel.find_by_id(id_exercicio)
+
+        if exercicio:
+            return exercicio.toDict()
+
+        return {'id': None}, 404
+
+    def post(self, id_exercicio):
         corpo = request.get_json( force=True )
 
-        matricula = MatriculaModel(id_curso=id_curso, id_user=id_user, **corpo) #AlunoModel(corpo['nome'], corpo['numero'])
+        matricula = MatriculaModel(id_curso=id_exercicio, id_user=id_exercicio, **corpo) #AlunoModel(corpo['nome'], corpo['numero'])
         try:
             matricula.save()
         except:
-            return {"mensagem":"Ocorreu um erro interno ao tentar inserir uma matricula (DB)"}, 500
+            return {"mensagem":"Ocorreu um erro interno ao tentar inserir um exercicio (DB)"}, 500
 
         return matricula.toDict(), 201
 
-    def put(self, id_curso):
+    def put(self, id_exercicio):
         pass
+
+    def delete(self, id_exercicio):
+        exercicio = ExerciciosModel.find_by_id(id_exercicio)
+
+        if exercicio:
+            exercicio.delete()
+            return {'mensagem': 'Exercicio deletado da base.'}
+
+        return {'mensagem': 'Exercicio não encontrado.'}, 404
     
