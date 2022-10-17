@@ -71,7 +71,6 @@ class UsuarioModel(db.Model, UserMixin):
     def toDict(self):
         return {'id': self.id, 'nome':self.nome, 'linguagem':self.linguagem}
 
-
 class MatriculaModel(db.Model):
     _tablename__ = "matricula_model"
 
@@ -84,6 +83,7 @@ class MatriculaModel(db.Model):
     status= db.Column(db.Boolean, default=1)
     fim= db.Column(db.DateTime)
     id_matricula = db.Column(db.Integer, primary_key = True)
+
 
     def __init__(self, id_user, id_curso, inicio, status, fim, id_matricula):
         self.id_curso = id_curso
@@ -108,19 +108,22 @@ class MatriculaModel(db.Model):
     def toDict(self):
         return {'id user': self.id_user, 'id curso':self.id_curso, 'inicio':self.inicio, 'status':self.status, 'fim':self.fim, 'matricula': self.id_matricula}
 
+exercicios = db.Table('tbl_exercicios',
+                    db.Column('curso_id', db.Integer, db.ForeignKey('curso_model.id_curso')),
+                    db.Column('exercicio_id', db.Integer, db.ForeignKey('exercicios_model.id_exercicio'))
+                    )
+
 class ExerciciosModel(db.Model):
     _tablename__ = "exercicios_model"
 
     id_exercicio = db.Column(db.Integer, primary_key=True, nullable = False)
-    id_curso = db.Column(db.ForeignKey(CursoModel.id_curso), nullable=False)
+    curso = db.relationship('CursoModel', secondary="tbl_exercicios", backref='relacao_curso_exercicio')
     tela = db.Column(db.Integer)
-    #pytest 
     enunciado = db.Column(db.String(4000), nullable = False)
     gabarito = db.Column(db.String(4000), nullable = False)
 
-    def __init__(self, id_exercicio, id_curso, tela, enunciado, gabarito):
+    def __init__(self, id_exercicio,tela, enunciado, gabarito):
         self.id_exercicio = id_exercicio
-        self.id_curso = id_curso
         self.tela = tela
         self.enunciado = enunciado
         self.gabarito = gabarito
@@ -138,7 +141,8 @@ class ExerciciosModel(db.Model):
         return cls.query.all()        
 
     def toDict(self):
-        return {'id exercicio': self.id_exercicio, 'id curso':self.id_curso, 'tela':self.tela, 'enunciado':self.enunciado, 'gabarito':self.gabarito}
+        return {'id exercicio': self.id_exercicio, 'tela':self.tela, 'enunciado':self.enunciado, 'gabarito':self.gabarito}
+
 class RespostasModel(db.Model):
     _tablename__ = "respostas_model"
 
