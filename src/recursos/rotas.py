@@ -1,7 +1,7 @@
 from flask_restful import Resource
 from flask import request, jsonify
 import sqlalchemy
-from model.modelos import CursoModel, RespostasModel, MatriculaModel, ExerciciosModel, UsuarioModel
+from model.modelos import CursoModel, MatriculaModel, ExerciciosModel, UsuarioModel, RespostasModel
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo
@@ -84,54 +84,21 @@ class UserForm(FlaskForm):
     senha2 = PasswordField('Repita a senha', validators=[DataRequired(), EqualTo('senha')])
     submit = SubmitField('Sign Up')
 
-class Resposta(Resource):
-
-    def get(self, id_curso):
-        resposta = RespostasModel.find_by_id(id_curso)
-
-        if resposta:
-            return resposta.toDict()
-
-        return {'id': None}, 404
-
-
-    def post(self, id_curso, id_user):
-        corpo = request.get_json( force=True )
-
-        resposta = RespostasModel(id_curso=id_curso, id_user=id_user, **corpo) #AlunoModel(corpo['nome'], corpo['numero'])
-        try:
-            resposta.save()
-        except:
-            return {"mensagem":"Ocorreu um erro interno ao tentar inserir uma resposta(DB)"}, 500
-
-        return resposta.toDict(), 201
-
-    def put(self, id_curso):
-        pass
-    
-    def delete(self, id_curso):
-        resposta = RespostasModel.find_by_id(id_curso)
-
-        if resposta:
-            resposta.delete()
-            return {'mensagem': 'Resposta deletado da base.'}
-
-        return {'mensagem': 'Resposta não encontrada.'}, 404
 
 class Matricula(Resource):
 
-    def get(self, id_curso):
-        resposta = MatriculaModel.find_by_id(id_curso)
+    def get(self, id_matricula):
+        resposta = MatriculaModel.find_by_id(id_matricula)
 
         if resposta:
             return resposta.toDict()
 
         return {'id': None}, 404
 
-    def post(self, id_curso, id_user):
+    def post(self, id_matricula):
         corpo = request.get_json( force=True )
 
-        matricula = MatriculaModel(id_curso=id_curso, id_user=id_user, **corpo) #AlunoModel(corpo['nome'], corpo['numero'])
+        matricula = MatriculaModel(id_curso=id_matricula, **corpo) #AlunoModel(corpo['nome'], corpo['numero'])
         try:
             matricula.save()
         except:
@@ -139,11 +106,11 @@ class Matricula(Resource):
 
         return matricula.toDict(), 201
 
-    def put(self, id_curso):
+    def put(self, id_matricula):
         pass
 
-    def delete(self, id_curso):
-        resposta = RespostasModel.find_by_id(id_curso)
+    def delete(self, id_matricula):
+        resposta = MatriculaModel.find_by_id(id_matricula)
 
         if resposta:
             resposta.delete()
@@ -164,7 +131,7 @@ class Exercicio(Resource):
     def post(self, id_exercicio):
         corpo = request.get_json( force=True )
 
-        matricula = MatriculaModel(id_curso=id_exercicio, id_user=id_exercicio, **corpo) #AlunoModel(corpo['nome'], corpo['numero'])
+        matricula = MatriculaModel(id_exercicio=id_exercicio, **corpo) #AlunoModel(corpo['nome'], corpo['numero'])
         try:
             matricula.save()
         except:
@@ -184,3 +151,36 @@ class Exercicio(Resource):
 
         return {'mensagem': 'Exercicio não encontrado.'}, 404
     
+class Resposta(Resource):
+
+    def get(self, id_resposta):
+        resposta = RespostasModel.find_by_id(id_resposta)
+
+        if resposta:
+            return resposta.toDict()
+
+        return {'id': None}, 404
+
+
+    def post(self, id_resposta):
+        corpo = request.get_json( force=True )
+
+        resposta = RespostasModel(id_curso=id_resposta, **corpo) #AlunoModel(corpo['nome'], corpo['numero'])
+        try:
+            resposta.save()
+        except:
+            return {"mensagem":"Ocorreu um erro interno ao tentar inserir uma resposta(DB)"}, 500
+
+        return resposta.toDict(), 201
+
+    def put(self, id_resposta):
+        pass
+    
+    def delete(self, id_resposta):
+        resposta = RespostasModel.find_by_id(id_resposta)
+
+        if resposta:
+            resposta.delete()
+            return {'mensagem': 'Resposta deletado da base.'}
+
+        return {'mensagem': 'Resposta não encontrada.'}, 404
