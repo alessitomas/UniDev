@@ -76,12 +76,4 @@ class Usuario(Resource):
 
         return {'mensagem': 'Curso não encontrado.'}, 404
 
-class UserForm(FlaskForm):
-    nome = StringField('Nome', validators=[DataRequired()])
-    username = StringField('Username', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired()])
-    senha = PasswordField('Senha', validators=[DataRequired()])
-    senha2 = PasswordField('Repita a senha', validators=[DataRequired(), EqualTo('senha')])
-    submit = SubmitField('Sign Up')
-
 

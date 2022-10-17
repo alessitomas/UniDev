@@ -1,4 +1,5 @@
 #from flask_login import LoginManager
+from crypt import methods
 from flask import Flask, request, jsonify, render_template, redirect, url_for
 #from flask_admin import Admin
 from flask_sqlalchemy import SQLAlchemy
@@ -10,7 +11,7 @@ from flask_admin.contrib.sqla import ModelView
 from flask_login import *
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from recursos.rotas import Curso, UserForm, Usuario
+from recursos.rotas import Curso, Usuario
 from model.sql_alchemy_para_db import db
 
 # Resistente a sistema operacional
@@ -41,32 +42,26 @@ api = Api(app)
 def create_tables():
     db.create_all()
 
+# landing page
 @app.route('/')
 def hello_world():
-    return f"<p>Hello, World!</p>"
+    return render_template('barros.html')
+# register
+@app.route('/register', methods =['GET','POST'])
+def iniciar_registro():
 
-@app.route('/usuario/adicionar', methods=['POST', 'GET'])
-def adicionar_usuario():
-    nome = None
-    form = UserForm()
-    if form.validate_on_submit():
-        user = UsuarioModel.query.filter_by(email=form.email.data).first()
-        if user is None:
-            senha_hashed = generate_password_hash(form.senha.data, 'sha256')
-            user = UsuarioModel(nome=form.nome.data, username=form.username.data, email=form.email.data, senha = senha_hashed)
-            db.session.add(user)
-            db.session.commit()
-            nome = form.nome.data
-            form.nome.data = ''
-            form.username.data = ''
-            form.email.data = ''
-            form.senha.data = ''
-        return render_template('src\templates\add_user.html', nome=nome, form=form)
-    return 'OI'
-     
+    if methods == 'POST':
+        u = request.form['username']
+        p = request.form['password']
+        e = request.form['email']
+        nome = request.form['nome']
+
+
+    
+    return render_template('register.html')
+
 api.add_resource(Curso, '/curso/<int:id_curso>')
 api.add_resource(Usuario, '/usuario/<int:id_usuario>')
-
 
 
 if __name__ == '__main__':

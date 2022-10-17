@@ -52,10 +52,12 @@ class UsuarioModel(db.Model, UserMixin):
     senha = db.Column(db.String(128), nullable=False)
     ##exercicios = db.relationship('ExerciciosModel', secondary="tbl_exercicios", backref='tabela_exercicios') 
 
-    def __init__(self, id_usuario, nome_usuario, email):
+    def __init__(self, id_usuario, nome_usuario, email,senha,username):
         self.id_usuario = id_usuario
         self.nome_usuario = nome_usuario
         self.email = email
+        self.username = username
+        self.senha = senha
 
     def save(self):
         db.session.add(self)
