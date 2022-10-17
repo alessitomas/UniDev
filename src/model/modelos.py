@@ -6,9 +6,6 @@ from model.sql_alchemy_para_db import db
 import sqlalchemy
 
 
-
-
-
 class CursoModel(db.Model):
     _tablename__ = "curso_model"
 
@@ -40,4 +37,32 @@ class CursoModel(db.Model):
 
     def toDict(self):
         return {'id': self.id, 'nome':self.nome, 'linguagem':self.linguagem}
+
+
+class RespostasModel(db.Model):
+    _tablename__ = "respostas"
+
+    id_user = db.Column(db.Integer, primary_key=True )
+    id_exercicio = db.Column(db.Integer, primary_key=True )
+    resposta = db.Column(db.String(4000))
+
+    def __init__(self, id_user, id_exercicio, resposta):
+        self.id_user = id_user
+        self.id_exercicio = id_exercicio
+        self.resposta = resposta
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    @classmethod
+    def search_all(cls):
+        return cls.query.all()        
+
+    def toDict(self):
+        return {'id user': self.id_user, 'id exercicio':self.id_exercicio, 'resposta':self.resposta}
 
