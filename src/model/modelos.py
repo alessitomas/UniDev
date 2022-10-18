@@ -42,20 +42,20 @@ class CursoModel(db.Model):
     def toDict(self):
         return {'id': self.id, 'nome':self.nome, 'linguagem':self.linguagem}
 
-class UsuarioModel(db.Model, UserMixin):
+class UsuarioModel(db.Model):
     _tablename__ = "usuario_model"
 
-    id_usuario = db.Column(db.Integer, primary_key=True )
-    nome_usuario = db.Column(db.String(80), unique=True, nullable=False)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    email = db.Column(db.String(80), unique=True, nullable=False)
-    senha = db.Column(db.String(128), nullable=False)
-    ##exercicios = db.relationship('ExerciciosModel', secondary="tbl_exercicios", backref='tabela_exercicios') 
-
-    def __init__(self, id_usuario, nome_usuario, email):
-        self.id_usuario = id_usuario
-        self.nome_usuario = nome_usuario
+    id = db.Column(db.Integer, primary_key=True, autoincrement = True )
+    nome = db.Column(db.String(80))
+    username = db.Column(db.String(20))
+    email = db.Column(db.String(20))
+    senha = db.Column(db.String(20))
+    def __init__(self,nome, username, email,senha):
+        self.nome = nome
+        self.username = username
         self.email = email
+        self.senha = senha
+        #super(AlunoModel, self).__init__(**kwargs)
 
     def save(self):
         db.session.add(self)
@@ -70,11 +70,48 @@ class UsuarioModel(db.Model, UserMixin):
         return cls.query.filter_by(id=id).first()
 
     @classmethod
-    def search_all(cls):
+    def seach_all(cls):
         return cls.query.all()        
 
     def toDict(self):
-        return {'id': self.id, 'nome':self.nome, 'linguagem':self.linguagem}
+        return {'id': self.id, 'nome':self.nome, 'numero':self.username, 'email':self.email}
+
+
+
+# class UsuarioModel(db.Model, UserMixin):
+#     _tablename__ = "usuario_model"
+
+#     id = db.Column(db.Integer, primary_key=True )
+#     nome_usuario = db.Column(db.String(80), unique=True, nullable=False)
+#     username = db.Column(db.String(80), unique=True, nullable=False)
+#     email = db.Column(db.String(80), unique=True, nullable=False)
+#     senha = db.Column(db.String(128), nullable=False)
+#     ##exercicios = db.relationship('ExerciciosModel', secondary="tbl_exercicios", backref='tabela_exercicios') 
+
+#     def __init__(self,nome, username, email,senha):
+#         self.nome = nome
+#         self.username = username
+#         self.email = email
+#         self.senha = senha
+
+#     def save(self):
+#         db.session.add(self)
+#         db.session.commit()
+
+#     def delete(self):
+#         db.session.delete(self)
+#         db.session.commit()
+
+#     @classmethod
+#     def find_by_id(cls, id):
+#         return cls.query.filter_by(id=id).first()
+
+#     @classmethod
+#     def search_all(cls):
+#         return cls.query.all()        
+
+    # def toDict(self):
+    #     return {'id': self.id, 'nome':self.nome, 'linguagem':self.linguagem}
 
 matricula_curso = db.Table('tbl_matricula_curso',
                     db.Column('curso_id', db.Integer, db.ForeignKey('curso_model.id_curso')),
@@ -82,7 +119,7 @@ matricula_curso = db.Table('tbl_matricula_curso',
                     )
 
 matricula_usuario = db.Table('tbl_matricula_usuario',
-                    db.Column('usuario_id', db.Integer, db.ForeignKey('usuario_model.id_usuario')),
+                    db.Column('usuario_id', db.Integer, db.ForeignKey('usuario_model.id')),
                     db.Column('matricula_id', db.Integer, db.ForeignKey('matricula_model.id_matricula'))
                     )
 
@@ -162,7 +199,7 @@ class ExerciciosModel(db.Model):
 
 
 resposta_usuario = db.Table('tbl_resposta_usuario',
-                    db.Column('usuario_id', db.Integer, db.ForeignKey('usuario_model.id_usuario')),
+                    db.Column('usuario_id', db.Integer, db.ForeignKey('usuario_model.id')),
                     db.Column('resposta_id', db.Integer, db.ForeignKey('respostas_model.id_resposta'))
                     )
 
