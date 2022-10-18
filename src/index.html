@@ -1,0 +1,155 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/gh/vanillawc/wc-monaco-editor@1/index.js"></script>
+  
+  <py-env>
+    - pytest
+    - pytest-reportlog
+    - paths:
+      - ./main2.py
+      - ./solution.py
+      - ./test_sol.py
+  </py-env>
+  <style>
+
+    #app {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #app h1 {
+      padding: 15px;
+      font-size: x-large;
+      background-color: #c4d2ff;
+    }
+
+    #app .enunciado {
+      padding: 15px;
+      line-height: 2;
+    }
+
+    #code {
+      height: 10rem;
+      border: 1px solid;
+      border-radius: 3px;
+      flex: 1;
+    }
+
+    #run-tests {
+      background-color: #b5ddad;
+      width: 10rem;
+      align-self: end;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    #pytest-output {
+      flex: 1;
+      overflow-y: scroll;
+    }
+    .esquerdo {
+      float:left;
+      display: flex;
+      flex-direction: column;
+      width: 33%;
+      overflow-y: scroll;
+    }
+    .meio {
+      display: flex;
+      flex-direction: column;
+      width: 33%;
+    }
+    .direito {
+      float:right;
+      display: flex;
+      flex-direction: column;
+      width: 33%;
+    }
+
+    #body_div{
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 94%;
+    }
+
+    #some{
+      height: 1%;
+    }
+
+    .rodape{
+      background-color: black;
+      height: 6%;
+      display: flex;
+      flex-direction:row-reverse;
+      display: flex;
+      flex-direction: row;
+      justify-content:space-between;
+    }
+    .next_button{
+      margin-right: 20px;
+      margin-left: 20px;
+
+      background-color: #b5ddad;
+      width: 10rem;
+      align-self: end;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .progresso{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size:small;
+      color: #c4d2ff;
+    }
+  </style>
+</head>
+<body>
+  <div id="body_div">
+  <section id="app">
+    <div class = "esquerdo">
+      <h1> Exercício: Área do Círculo</h1>
+      <div class="enunciado">
+        <p>Faça uma função que recebe o raio de um círculo e devolve a sua área.</p>
+
+        <p>O nome da sua função deve ser <code>calcula_area_do_circulo.</code></p>
+      </div>
+    </div>
+    <div class = "meio">
+    <wc-monaco-editor id="code" language="python"></wc-monaco-editor>
+    
+    <button id="run-tests">Rodar Testes</button>
+    </div>
+    <div class="direito">
+      <pre id="pytest-output">
+      </pre>
+      <py-script id = "pytest-term"> 
+      </py-script>|
+    </div>
+  </section>
+
+  </div>
+  <div class="rodape">
+    <button class="next_button">Voltar</button>
+    <div class="progresso">
+      <h2>PROGRESSO</h2>
+        <h3>4/10</h3>
+    </div>
+    
+    <button class="next_button" >Próximo</button>
+  </div>
+  <py-script src="main2.py" ouput="pytest-output" id="some">
+  </py-script>
+
+</body>
+</html>

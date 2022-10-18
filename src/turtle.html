@@ -1,0 +1,90 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/gh/vanillawc/wc-monaco-editor@1/index.js"></script>
+  
+  <py-env>
+    - pytest
+    - pytest-reportlog
+    - ./turtle-0.0.1-py3-none-any.whl
+    - paths:
+      - turtle-config.py
+      - ./tt.py
+  </py-env>
+  <style>
+
+    #app {
+      display: flex;
+      flex-direction: column;
+      width: 60%;
+      height: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #app h1 {
+      padding: 15px;
+      font-size: x-large;
+      background-color: #c4d2ff;
+    }
+
+    #app .enunciado {
+      padding: 15px;
+      line-height: 2;
+    }
+
+    #code {
+      height: 10rem;
+      border: 1px solid;
+      border-radius: 3px;
+      flex: 1;
+    }
+
+    #run-turtle {
+      background-color: #b5ddad;
+      width: 10rem;
+      align-self: end;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    #output {
+      flex: 1;
+      overflow: scroll;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <section id="app"">
+    <h1> Exemplo de código usando turtle </h1>
+    <div class="enunciado">
+      <p>O módulo turtle pode ser usado no script abaixo. Implementação do turtle para Pyodide cortesia do projeto 
+        <a href="https://console.basthon.fr/?from=examples/spirale.py">Basthon</a>, baseada na original do 
+        <a href="https://brython.info/gallery/turtle.html">Brython</a> </p>
+    </div>
+
+    <wc-monaco-editor src="tt.py" id="code" language="python"></wc-monaco-editor>
+  
+    <button id="run-turtle">Run Turtle</button>
+  
+    <div id="output">
+        
+    </div>
+
+  </section>
+
+  <py-script src="turtle-config.py">
+  </py-script>
+
+</body>
+
+</html>

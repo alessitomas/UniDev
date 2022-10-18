@@ -63,6 +63,17 @@ def adicionar_usuario():
             form.senha.data = ''
         return render_template('src\templates\add_user.html', nome=nome, form=form)
     return 'OI'
+
+
+
+
+@app.route('/<int:id_exercicio>/<int:id_usuario>')
+def curso(id_exercicio, id_usuario):
+    curso = ExerciciosModel.query.filter_by(id_exercicio=id_exercicio)
+
+    
+    return render_template('index.html')
+
      
 api.add_resource(Curso, '/curso/<int:id_curso>')
 api.add_resource(Matricula, '/usuario/<int:id_usuario>/<int:id_matricula>')
