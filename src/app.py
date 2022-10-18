@@ -45,27 +45,25 @@ def create_tables():
 def hello_world():
     return f"<p>Hello, World!</p>"
 
-@app.route('/usuario/adicionar', methods=['POST', 'GET'])
-def adicionar_usuario():
-    nome = None
-    form = UserForm()
-    if form.validate_on_submit():
-        user = UsuarioModel.query.filter_by(email=form.email.data).first()
-        if user is None:
-            senha_hashed = generate_password_hash(form.senha.data, 'sha256')
-            user = UsuarioModel(nome=form.nome.data, username=form.username.data, email=form.email.data, senha = senha_hashed)
-            db.session.add(user)
-            db.session.commit()
-            nome = form.nome.data
-            form.nome.data = ''
-            form.username.data = ''
-            form.email.data = ''
-            form.senha.data = ''
-        return render_template('src\templates\add_user.html', nome=nome, form=form)
-    return 'OI'
+@app.route('/registro/', methods=('GET', 'POST'))
+def create():
+    if request.method == 'POST':
+        nome = request.form['name']
+        username = request.form['username']
+        email = request.form['email']
+        senha = request.form['pass']
+    
+        student = UsuarioModel(nome=nome,
+                          username=username,
+                          email=email,
+                          senha=senha,
+                        )
+        student.save()
+    return render_template('index.html')
 
-
-
+@app.route('/login/', methods=('GET', 'POST'))
+def login():
+    return render_template('index2.html')
 
 @app.route('/<int:id_exercicio>/<int:id_usuario>')
 def curso(id_exercicio, id_usuario):
@@ -73,7 +71,6 @@ def curso(id_exercicio, id_usuario):
 
     
     return render_template('index.html')
-
      
 api.add_resource(Curso, '/curso/<int:id_curso>')
 api.add_resource(Matricula, '/usuario/<int:id_usuario>/<int:id_matricula>')
