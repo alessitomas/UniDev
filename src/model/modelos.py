@@ -89,13 +89,13 @@ matricula_usuario = db.Table('tbl_matricula_usuario',
 class MatriculaModel(db.Model):
     _tablename__ = "matricula_model"
 
-    EM_ABERTO = 1
-    CONCLUIDO = 0
+    EM_ABERTO = 0
+    CONCLUIDO = 1
 
     usuario = db.relationship('UsuarioModel', secondary="tbl_matricula_usuario", backref='relacao_matricula_usuario')
     curso = db.relationship('CursoModel', secondary="tbl_matricula_curso", backref='relacao_matricula_curso')
     inicio = db.Column(db.DateTime, nullable = False)
-    status= db.Column(db.Boolean, default=1)
+    status= db.Column(db.Boolean, default=0)
     fim= db.Column(db.DateTime)
     id_matricula = db.Column(db.Integer, primary_key = True)
 
@@ -132,12 +132,16 @@ class ExerciciosModel(db.Model):
     id_exercicio = db.Column(db.Integer, primary_key=True, nullable = False)
     curso = db.relationship('CursoModel', secondary="tbl_exercicios", backref='relacao_curso_exercicio')
     tela = db.Column(db.Integer)
+    pytest = db.Column(db.String(4000))
+    titulo = db.Column(db.String(80))
     enunciado = db.Column(db.String(4000), nullable = False)
     gabarito = db.Column(db.String(4000), nullable = False)
 
-    def __init__(self, id_exercicio,tela, enunciado, gabarito):
+    def __init__(self, id_exercicio,tela, enunciado, gabarito, pytest, titulo):
         self.id_exercicio = id_exercicio
         self.tela = tela
+        self.pytest = pytest
+        self.titulo = titulo
         self.enunciado = enunciado
         self.gabarito = gabarito
 
@@ -154,7 +158,7 @@ class ExerciciosModel(db.Model):
         return cls.query.all()        
 
     def toDict(self):
-        return {'id exercicio': self.id_exercicio, 'tela':self.tela, 'enunciado':self.enunciado, 'gabarito':self.gabarito}
+        return {'id exercicio': self.id_exercicio, 'tela':self.tela, 'enunciado':self.enunciado, 'gabarito':self.gabarito, 'titulo': self.titulo}
 
 
 resposta_usuario = db.Table('tbl_resposta_usuario',
