@@ -84,4 +84,102 @@ class UserForm(FlaskForm):
     senha2 = PasswordField('Repita a senha', validators=[DataRequired(), EqualTo('senha')])
     submit = SubmitField('Sign Up')
 
+class Matricula(Resource):
 
+    def get(self, id_matricula):
+        resposta = MatriculaModel.find_by_id(id_matricula)
+
+        if resposta:
+            return resposta.toDict()
+
+        return {'id': None}, 404
+
+    def post(self, id_matricula):
+        corpo = request.get_json( force=True )
+
+        matricula = MatriculaModel(id_curso=id_matricula, **corpo) #AlunoModel(corpo['nome'], corpo['numero'])
+        try:
+            matricula.save()
+        except:
+            return {"mensagem":"Ocorreu um erro interno ao tentar inserir uma matricula (DB)"}, 500
+
+        return matricula.toDict(), 201
+
+    def put(self, id_matricula):
+        pass
+
+    def delete(self, id_matricula):
+        resposta = MatriculaModel.find_by_id(id_matricula)
+
+        if resposta:
+            resposta.delete()
+            return {'mensagem': 'Resposta deletado da base.'}
+
+        return {'mensagem': 'Resposta não encontrada.'}, 404
+    
+class Exercicio(Resource):
+
+    def get(self, id_exercicio):
+        exercicio = ExerciciosModel.find_by_id(id_exercicio)
+
+        if exercicio:
+            return exercicio.toDict()
+
+        return {'id': None}, 404
+
+    def post(self, id_exercicio):
+        corpo = request.get_json( force=True )
+
+        matricula = MatriculaModel(id_exercicio=id_exercicio, **corpo) #AlunoModel(corpo['nome'], corpo['numero'])
+        try:
+            matricula.save()
+        except:
+            return {"mensagem":"Ocorreu um erro interno ao tentar inserir um exercicio (DB)"}, 500
+
+        return matricula.toDict(), 201
+
+    def put(self, id_exercicio):
+        pass
+
+    def delete(self, id_exercicio):
+        exercicio = ExerciciosModel.find_by_id(id_exercicio)
+
+        if exercicio:
+            exercicio.delete()
+            return {'mensagem': 'Exercicio deletado da base.'}
+
+        return {'mensagem': 'Exercicio não encontrado.'}, 404
+    
+class Resposta(Resource):
+
+    def get(self, id_resposta):
+        resposta = RespostasModel.find_by_id(id_resposta)
+
+        if resposta:
+            return resposta.toDict()
+
+        return {'id': None}, 404
+
+
+    def post(self, id_resposta):
+        corpo = request.get_json( force=True )
+
+        resposta = RespostasModel(id_curso=id_resposta, **corpo) #AlunoModel(corpo['nome'], corpo['numero'])
+        try:
+            resposta.save()
+        except:
+            return {"mensagem":"Ocorreu um erro interno ao tentar inserir uma resposta(DB)"}, 500
+
+        return resposta.toDict(), 201
+
+    def put(self, id_resposta):
+        pass
+    
+    def delete(self, id_resposta):
+        resposta = RespostasModel.find_by_id(id_resposta)
+
+        if resposta:
+            resposta.delete()
+            return {'mensagem': 'Resposta deletado da base.'}
+
+        return {'mensagem': 'Resposta não encontrada.'}, 404
