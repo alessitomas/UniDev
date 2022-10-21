@@ -63,11 +63,11 @@ def create():
 
 @app.route('/login/', methods=('GET', 'POST'))
 def login():
-    return render_template('index2.html')
+    return render_template('index.html')
 
-@app.route('/<int:id_exercicio>/<int:id_usuario>')
-def curso(id_exercicio, id_usuario):
-    curso = ExerciciosModel.query.filter_by(id_exercicio=id_exercicio)
+# @app.route('/<int:id_exercicio>/<int:id_usuario>')
+# def curso(id_exercicio, id_usuario):
+#     curso = ExerciciosModel.query.filter_by(id_exercicio=id_exercicio)
 
     
     return render_template('index.html')

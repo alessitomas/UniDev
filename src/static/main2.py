@@ -29,7 +29,7 @@ def run_tests(e):
         pyscript.write('pytest-output', 'passou')
     else:
 
-        pyscript.write('pytest-output', err.getvalue())
+    pyscript.write('pytest-output', err.getvalue())
 
 
 
