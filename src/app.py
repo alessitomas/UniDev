@@ -42,11 +42,11 @@ def create_tables():
     db.create_all()
 
 @app.route('/')
-def hello_world():
-    return f"<p>Hello, World!</p>"
+def menu():
+    return render_template('landing_page.html')
 
 @app.route('/registro/', methods=('GET', 'POST'))
-def create():
+def registro():
     if request.method == 'POST':
         nome = request.form['name']
         username = request.form['username']
@@ -59,18 +59,24 @@ def create():
                           senha=senha,
                         )
         student.save()
-    return render_template('index.html')
+    return render_template('registro.html')
 
 @app.route('/login/', methods=('GET', 'POST'))
 def login():
-    return render_template('index2.html')
+    return render_template('login.html')
 
-@app.route('/<int:id_exercicio>/<int:id_usuario>')
-def curso(id_exercicio, id_usuario):
-    curso = ExerciciosModel.query.filter_by(id_exercicio=id_exercicio)
+
+@app.route('/code/', methods=('GET', 'POST'))
+def code():
+    return render_template('index.html')
+
+
+# @app.route('/<int:id_exercicio>/<int:id_usuario>')
+# def curso(id_exercicio, id_usuario):
+#     curso = ExerciciosModel.query.filter_by(id_exercicio=id_exercicio)
 
     
-    return render_template('index.html')
+#     return render_template('index.html')
      
 api.add_resource(Curso, '/curso/<int:id_curso>')
 api.add_resource(Matricula, '/usuario/<int:id_usuario>/<int:id_matricula>')

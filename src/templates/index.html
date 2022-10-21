@@ -1,110 +1,155 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form by Colorlib</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/gh/vanillawc/wc-monaco-editor@1/index.js"></script>
+  
+  <py-env>
+    - pytest
+    - pytest-reportlog
+    - paths:
+      - ../static/main2.py
+      - ../static/solution.py
+      - ../static/test_sol.py
+  </py-env>
+  <style>
 
-    <!-- Font Icon -->
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    #app {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-    <!-- Main css -->
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    #app h1 {
+      padding: 15px;
+      font-size: x-large;
+      background-color: #c4d2ff;
+    }
+
+    #app .enunciado {
+      padding: 15px;
+      line-height: 2;
+    }
+
+    #code {
+      height: 10rem;
+      border: 1px solid;
+      border-radius: 3px;
+      flex: 1;
+    }
+
+    #run-tests {
+      background-color: #b5ddad;
+      width: 10rem;
+      align-self: end;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    #pytest-output {
+      flex: 1;
+      overflow-y: scroll;
+    }
+    .esquerdo {
+      float:left;
+      display: flex;
+      flex-direction: column;
+      width: 33%;
+      overflow-y: scroll;
+    }
+    .meio {
+      display: flex;
+      flex-direction: column;
+      width: 33%;
+    }
+    .direito {
+      float:right;
+      display: flex;
+      flex-direction: column;
+      width: 33%;
+    }
+
+    #body_div{
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 94%;
+    }
+
+    #some{
+      height: 1%;
+    }
+
+    .rodape{
+      background-color: black;
+      height: 6%;
+      display: flex;
+      flex-direction:row-reverse;
+      display: flex;
+      flex-direction: row;
+      justify-content:space-between;
+    }
+    .next_button{
+      margin-right: 20px;
+      margin-left: 20px;
+
+      background-color: #b5ddad;
+      width: 10rem;
+      align-self: end;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .progresso{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size:small;
+      color: #c4d2ff;
+    }
+  </style>
 </head>
 <body>
+  <div id="body_div">
+  <section id="app">
+    <div class = "esquerdo">
+      <h1> Exercício: Área do Círculo</h1>
+      <div class="enunciado">
+        <p>Faça uma função que recebe o raio de um círculo e devolve a sua área.</p>
 
-    <div class="main">
+        <p>O nome da sua função deve ser <code>calcula_area_do_circulo.</code></p>
+      </div>
+    </div>
+    <div class = "meio">
+    <wc-monaco-editor id="code" language="python"></wc-monaco-editor>
+    
+    <button id="run-tests">Rodar Testes</button>
+    </div>
+    <div class="direito">
+      <pre id="pytest-output">
+      </pre>
+      <py-script id = "pytest-term"> 
+      </py-script>|
+    </div>
+  </section>
 
-        <!-- Sign up form -->
-        <section class="signup">
-            <div class="container">
-                <div class="signup-content">
-                    <div class="signup-form">
-                        <h2 class="form-title">Sign up</h2>
-                        <form method="POST" class="register-form" id="register-form">
-                            <div class="form-group">
-                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="name" id="name" placeholder="Your Name"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                <input type="email" name="email" id="email" placeholder="Your Email"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="username"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="text" name="username" id="username" placeholder="username"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="pass" id="pass" placeholder="Password"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                                <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password"/>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
-                            </div>
-                            <div class="form-group form-button">
-                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="signup-image">
-                        <figure><img src="{{url_for('static', filename='images/teste1.png')}}" alt="sing up image"></figure>
-                        <a href="../login" class="signup-image-link">I am already member</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+  </div>
+  <div class="rodape">
+    <button class="next_button">Voltar</button>
+    <div class="progresso">
+      <h2>PROGRESSO</h2>
+        <h3>4/10</h3>
+    </div>
+    
+    <button class="next_button" >Próximo</button>
+  </div>  "{{url_for('static', filename='css/style.css')}}"
+  <py-script src="{{url_for('static', filename='main2.py')}}" ouput="pytest-output" id="some">
+  </py-script>
 
-        <!-- Sing in  Form -->
-        <!-- <section class="sign-in">
-            <div class="container">
-                <div class="signin-content">
-                    <div class="signin-image">
-                        <figure><img src="images/signin-image.jpg" alt="sing up image"></figure>
-                        <a href="#" class="signup-image-link">Create an account</a>
-                    </div>
-
-                    <div class="signin-form">
-                        <h2 class="form-title">Sign up</h2>
-                        <form method="POST" class="register-form" id="login-form">
-                            <div class="form-group">
-                                <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="your_name" id="your_name" placeholder="Your Name"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="your_pass" id="your_pass" placeholder="Password"/>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
-                                <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
-                            </div>
-                            <div class="form-group form-button">
-                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
-                            </div>
-                        </form>
-                        <div class="social-login">
-                            <span class="social-label">Or login with</span>
-                            <ul class="socials">
-                                <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
-                                <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
-                                <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </div> -->
-
-    <!-- JS -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="js/main.js"></script>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</body>
 </html>

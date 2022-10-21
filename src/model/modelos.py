@@ -41,6 +41,9 @@ class CursoModel(db.Model):
 
     def toDict(self):
         return {'id': self.id, 'nome':self.nome, 'linguagem':self.linguagem}
+    
+    def __str__(self):
+        return f'{self.nome_curso}'
 
 class UsuarioModel(db.Model):
     _tablename__ = "usuario_model"
@@ -75,7 +78,8 @@ class UsuarioModel(db.Model):
 
     def toDict(self):
         return {'id': self.id, 'nome':self.nome, 'numero':self.username, 'email':self.email}
-
+    def __str__(self):
+        return f'{self.nome}'
 
 
 # class UsuarioModel(db.Model, UserMixin):
@@ -157,6 +161,7 @@ class MatriculaModel(db.Model):
 
     def toDict(self):
         return {'id user': self.id_user, 'id curso':self.id_curso, 'inicio':self.inicio, 'status':self.status, 'fim':self.fim, 'matricula': self.id_matricula}
+
 
 exercicios = db.Table('tbl_exercicios',
                     db.Column('curso_id', db.Integer, db.ForeignKey('curso_model.id_curso')),
