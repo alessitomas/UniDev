@@ -71,11 +71,22 @@ def code():
     return render_template('index.html')
 
 
+@app.route('/<int:id_curso>/<int:id_usuario>', methods=('GET', 'POST'))
+def terminal(id_curso,id_usuario):
+    
+
+
+
+
+
+
+    return render_template('index.html')
+
+
+
 # @app.route('/<int:id_exercicio>/<int:id_usuario>')
 # def curso(id_exercicio, id_usuario):
 #     curso = ExerciciosModel.query.filter_by(id_exercicio=id_exercicio)
-
-    
 #     return render_template('index.html')
      
 api.add_resource(Curso, '/curso/<int:id_curso>')
