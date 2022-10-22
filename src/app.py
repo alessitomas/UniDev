@@ -73,13 +73,6 @@ def code():
 
 @app.route('/<int:id_curso>/<int:id_usuario>', methods=('GET', 'POST'))
 def terminal(id_curso,id_usuario):
-    
-
-
-
-
-
-
     return render_template('index.html')
 
 
