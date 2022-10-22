@@ -1,73 +1,400 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="curso.css">
-    <link rel="icon" href="imagens/logo_browser.png">
-    <title>Curso - UniDev</title>
+    <link rel="icon" href="imagens/logo_pagina.png">
+    <title>Document</title>
 </head>
 <body>
 
-    <header>
-        <div class="nav-wrapper">
-            <div class="logo-container">
-                <img class="logo" src="imagens/logo_unidev.png" alt="Logo">
-            </div>
-            <nav>
-                <input class="hidden" type="checkbox" id="menuToggle">
-                <label class="menu-btn" for="menuToggle">
-                    <div class="menu"></div>
-                    <div class="menu"></div>
-                    <div class="menu"></div>
-                </label>
-                <div class="nav-container">
-                    <ul class="nav-tabs">
-                        <li class="nav-tab"> <a href="#cursos">Cursos</a> </li>
-                        <li class="nav-tab" id="login"> <a href="login.html">Logout</a> </li>
-                    </ul>
+    <div class="navbar">
+        <img src="imagens/logo_pagina.png" alt="logo" class="logo">
+        <ul>
+            <div class="items">
+                <li><a href="" class="item" id="teoria"> Teoria </a></li>
+                <li><a href="" class="item"> Exercícios </a></li>
+                <div id="logout">
+                    <li><a href="" id="logout"> Sair </a></li>
                 </div>
-            </nav>
-        </div>
-    </header>
-
-    <div class="title">
-        <h1> Curso Python </h1>
-        <img src="imagens/logo_python.png" alt="Python">
+            </div>
+        </ul>
     </div>
 
-    <hr width="50%">
+    <h1 class="title"> Python <img src="imagens/logo_python.png"></h1>
 
-    <div class="container">
-        <div class="container-left">
-            <div class="container-left-top">
-                <h2> Conteúdo </h2>
-                <ul>
-                    <li> <a href="#variaveis"> Variáveis </a> </li>
-                    <li> <a href="#condicionais"> Condicionais </a> </li>
-                    <li> <a href="#repeticao"> Repetição </a> </li>
-                    <li> <a href="#funcoes"> Funções </a> </li>
-                    <li> <a href="#listas"> Listas </a> </li>
-                    <li> <a href="#dicionarios"> Dicionários </a> </li>
-                </ul>
+    <h3 class="subtitle"> Selecione o assunto que deseja estudar: </h3>
+
+    <div class="navbar2">
+        <ul>
+            <div class="assuntos">
+                <li> <a href="#operadores" class="assunto"> Operadores </a></li>    
+                <li> <a href="#variaveis" class="assunto"> Variáveis </a></li>
+                <li> <a href="#estruturas_de_decisao" class="assunto"> Estruturas de decisão </a></li>
+                <li> <a href="#estruturas_de_repeticao" class="assunto"> Estruturas de repetição </a></li>
+                <li> <a href="#funcoes" class="assunto"> Funções </a></li>
+                <li> <a href="#listas" class="assunto"> Listas </a></li>
+                <li> <a href="#dicionarios" class="assunto"> Dicionários </a></li>
             </div>
-            <div class="container-left-bottom">
-                <h2> Dúvidas? </h2>
-                <p> Entre em contato conosco! </p>
-                <a href="contato.html"> <button> Contato </button> </a>
-            </div>
-        </div>
-        <div class="container-right">
-            <div class="container-right-top">
-                <h2> Introdução </h2>
-                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae. </p>
-            </div>
-            <div class="container-right-bottom">
-                <h2> Variáveis </h2>
-                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae. </p>
-            </div>
-        </div>
+        </ul>
+    </div>
+
+    <hr class="div_1">
+
+    <div class="conteudo">
+        <h2 id="operadores"> Operadores </h2>
+        <p class="texto"> 
+            Os operadores são <strong>símbolos que realizam operações matemáticas</strong>. 
+            Os operadores aritméticos são os mais utilizados e são os seguintes:
+        </p>
+        <ul>
+            <li> <b> + </b> <strong>→</strong> Soma </li>
+            <li> <b> - </b> <strong>→</strong> Subtração </li>
+            <li> <b> * </b> <strong>→</strong> Multiplicação </li>
+            <li> <b> / </b> <strong>→</strong> Divisão </li>
+            <li> <b> ** </b> <strong>→</strong> Potenciação </li>
+            <li> <b> // </b> <strong>→</strong> Divisão inteira </li>
+            <li> <b> % </b> <strong>→</strong> Resto da divisão </li>
+        </ul>
+
+        <br><br>
+        
+        <p class="texto">Considere os exemplos a seguir:</p>
+        <code>
+            <span> print(2 + 3) </span>
+            <span> print(7 - 3) </span>
+            <span> print(4 * 3) </span>
+            <span> print(8 / 2) </span>
+            <span> print(3**3) </span>
+            <span> print(5 // 4) </span>
+            <span> print(7 % 5) </span>
+        </code>
+        <br>
+        <span id="result"> Saídas: 6 / 4 / 12 / 4 / 27 / 1 / 2</span>
+
+        <br><br><br><br><br>
+
+        <h3 class="reminder"> Importante lembrar!</h3>
+        <ul id="aviso">
+            <p> Em Python, existem dois tipos de números que são utilizados para realizar operações matemáticas: </p>
+                <li> <b> int </b> → números inteiros
+                    (sem nenhuma casa decimal) </li>
+                <li> <b> float </b> → números reais 
+                    (pode possuir casas decimais)</li>
+            </p>
+        </ul>
+    </div>
+
+    <br><br><br><br><hr width="96%"><br>
+
+    <div class="conteudo">
+        <h2 id="variaveis"> Variáveis </h2>
+        <p class="texto"> São espaços na memória do computador que <strong>armazenam valores</strong>. Uma variável é como se fosse uma caixa com uma etiqueta com o seu nome. 
+            O conteúdo armazenado na caixa pode ser acessado a partir do nome em sua etiqueta.</p>
+
+        <br>
+
+        <p class="texto">Considere o exemplo a seguir:</p>
+        <code>
+            <span> a = 5 </span>
+            <span> b = 10</span>
+            <span> c = a + b </span>
+            <span> print(c) </span>
+        </code>
+        <br>
+        <span id="result"> Saída: 15</span>
+    </div>
+
+    <hr class="div_1">
+
+    <div class="conteudo">
+        <h2 id="estruturas_de_decisao"> Estruturas de decisão </h2>
+        <p class="texto"> São estruturas que permitem que o programa tome decisões. 
+            As estruturas de decisão (<strong>if</strong> e <strong>else</strong>) são utilizadas para executar um bloco de código somente <strong>se uma condição for verdadeira</strong>.
+        </p>
+
+        <br>
+
+        <p class="texto">Considere o exemplo a seguir:</p>
+        <code>
+            <span> a = 5 </span>
+            <span> b = 10</span>
+            <br>
+            <span> if a > b: </span>
+            <span id="if_else">     print("a é maior que b") </span>
+            <span> else: </span>
+            <span id="if_else">     print("b é maior que a") </span>
+        </code>
+        <br>
+        <span id="result"> Saída: "b é maior que a"</span>
+    </div>
+
+    <hr class="div_1">
+
+    <div class="conteudo">
+        <h2 id="estruturas_de_repeticao"> Estruturas de repetição </h2>
+        <p class="texto"> São estruturas que permitem que o programa repita um bloco de código várias vezes. 
+            As estruturas de repetição (<strong>while</strong> e <strong>for</strong>) são utilizadas para executar um bloco de código <strong>enquanto uma condição for verdadeira</strong>.
+
+            <br><br><br><br>
+            Usando a estrutura <strong>while</strong>, o bloco de código é executado <strong>enquanto a condição for verdadeira</strong>, o que acaba gerando a necessidade do que normalmente é chamado
+            de <strong>contador</strong>, ou seja, um trecho de código que desempenhe a função de <strong>atualizar o valor que está sendo analisado quando o bloco for executado</strong>.
+            Caso este não exista, o bloco de código será executado <strong>infinitamente</strong>, já que o valor não está sendo atualizado em nenhum momento.
+
+            <br><br>
+
+            Usando a estrutura <strong>for</strong>, a lógica é muito parecida com a do <strong>while</strong>. No entanto, neste caso, o contador é criado automaticamente pelo próprio Python.
+            A função <strong> range </strong> é utilizada para criar uma sequência de números que será utilizada como contador, ou seja, o código será executado até 
+            quando o número de loops for igual ao número passado pelo próprio usuário nesta mesma função. 
+        </p>
+
+        <br><br>
+
+        <p class="texto">Considere os exemplos a seguir:</p>
+
+        <code>
+            <span><strong>USANDO WHILE:</strong></span>
+            <br>
+            <span> a = 0 </span>
+            <span> while a < 5: </span>
+            <span id="if_else">     print(a) </span>
+            <span id="if_else">     a = a + 1 </span>
+            <br><br>
+            <span><strong>USANDO FOR:</strong></span>
+            <br>
+            <span> for i in range(5): </span>
+            <span id="if_else">     print(i) </span>
+        </code>
+        <br>
+        <span id="result"> Saída: 0  1  2  3  4</span>
+
+        <br><br><br><br><br>
+
+        <h3 class="tip"> Dica! </h3>
+        <ul id="dica">
+            <p> No lugar de "a = a + 1" no loop usando o método WHILE, é possível substituir por "a += 1", já que significam a mesma coisa e, portanto, só se diferenciam
+                na maneira em que são escritos! </p>
+        </ul>
+    </div>
+
+    <hr class="div_1">
+
+    <div class="conteudo">
+        <h2 id="funcoes"> Funções </h2>
+        <p class="texto"> Funções são blocos de código que podem ser executados várias vezes.
+            Elas são utilizadas para <strong>reutilizar código</strong> e <strong>organizar o código</strong> de maneira mais simples.
+            <br><br>
+            Para criar uma função, é necessário utilizar a palavra reservada <strong>def</strong> e, em seguida, o nome da função. 
+            Após isso, é necessário colocar os parâmetros que serão utilizados na função, caso haja. 
+            Por fim, é necessário colocar dois pontos (<strong>:</strong>) e, em seguida, o bloco de código que será executado quando a função for chamada.
+        </p>
+
+        <br><br>
+
+        <p class="texto">Considere o exemplo a seguir:</p>
+
+        <code>
+            <span> def soma(a, b): </span>
+            <span id="if_else">     soma =  a + b </span>
+            <span id="if_else">     return soma</span>
+            <br>
+            <span> print(soma(5, 10)) </span>
+        </code>
+        <br>
+        <span id="result"> Saída: 15</span>
+
+        <br><br><br><br><br>
+
+        <h3 class="reminder"> Importante lembrar!</h3>
+        <ul id="aviso">
+            <p> Quando criamos uma função, é necessário que ao final do bloco de código 
+                seja utilizado a palavra reservada "return", que é utilizada para retornar o valor que foi calculado dentro da função. 
+                Caso não seja utilizado, o valor retornado será "None", que significa que não há valor algum sendo retornado pela função. </p>
+        </ul>
+    </div>
+
+    <hr class="div_1">
+
+    <div class="conteudo">
+        <h2 id="listas"> Listas </h2>
+        <p class="texto"> Listas são estruturas de dados que permitem armazenar vários valores em uma mesma variável.
+            Elas são utilizadas para <strong>armazenar valores</strong> e <strong>organizar o código</strong> de maneira mais simples.
+            <br><br>
+            Para criar uma lista, é necessário utilizar colchetes (<strong>[ ]</strong>) e, em seguida, os valores que serão armazenados na lista separados por vírgulas (<strong>","</strong>).
+            É possível armazenar qualquer tipo de dado dentro de uma lista, como números, strings, booleanos, etc.
+        </p>
+
+        <br><br>
+
+        <h3 class="methods"> Métodos importantes de lista em Python:</h3>
+        <ul>
+            <li> <strong>append()</strong>: adiciona um elemento no final da lista. </li>
+            <li> <strong>clear()</strong>: remove todos os elementos da lista. </li>
+            <li> <strong>copy()</strong>: copia a lista. </li>
+            <li> <strong>count()</strong>: conta quantas vezes um elemento aparece na lista. </li>
+            <li> <strong>extend()</strong>: adiciona os elementos de uma lista a outra. </li>
+            <li> <strong>index()</strong>: retorna o índice do primeiro elemento com o valor especificado. </li>
+            <li> <strong>insert()</strong>: adiciona um elemento em uma posição específica (índice). </li>
+            <li> <strong>pop()</strong>: remove o elemento de uma posição específica (índice). </li>
+            <li> <strong>remove()</strong>: remove o primeiro elemento com o valor especificado. </li>
+            <li> <strong>reverse()</strong>: inverte a ordem da lista. </li>
+            <li> <strong>sort()</strong>: ordena a lista. </li>
+        </ul>
+
+        <br><br>
+
+
+        <p class="texto">Considere os exemplos a seguir:</p>
+
+        <code>
+            <span> lista = [1, 2, 3, 4, 5] </span>
+            <span> lista.append(6)</span>
+            <br>
+            <span> print(lista) </span>
+        </code>
+        
+        <br>
+        <span id="result"> Saída: [1, 2, 3, 4, 5, 6]</span>
+
+        <br><br><br><br><br>
+
+        <code>
+            <span> lista = [1, 2, 3, 4, 5] </span>
+            <span> lista.pop(2)</span>
+            <br>
+            <span> print(lista) </span>
+        </code>
+
+        <br>
+        <span id="result"> Saída: [1, 2, 4, 5]</span>
+
+        <br><br><br><br><br>
+
+        <code>
+            <span> lista = [1, 2, 3, 4, 5] </span>
+            <span> lista.reverse()</span>
+            <br>
+            <span> print(lista) </span>
+        </code>
+
+        <br>
+        <span id="result"> Saída: [5, 4, 3, 2, 1]</span>
+
+        <br><br><br><br><br>
+
+
+        <code>
+            <span> lista = [3, 2, 1, 5, 4] </span>
+            <span> lista.sort()</span>
+            <br>
+            <span> print(lista) </span>
+        </code>
+
+        <br>
+        <span id="result"> Saída: [1, 2, 3, 4, 5]</span>
+
+        <br><br><br><br><br>
+
+        <h3 class="reminder"> Importante lembrar!</h3>
+        <ul id="aviso">
+            <p> Em uma lista, o primeiro item possui o índice 0. Logo, quando queremos nos referir ao terceiro elemento da lista, por exemplo, o índice de tal elemento seria o
+                2, já que o primeiro elemento possui o índice 0, o segundo possui o índice 1 e o terceiro possui o índice 2. </p>
+            </p>
+        </ul>
+    </div>
+
+    <hr class="div_1">
+
+    <div class="conteudo">
+        <h2 id="dicionarios"> Dicionários </h2>
+        <p class="texto"> Os dicionários em Python possuem certa similaridade com a ideia das listas. 
+            A diferença é que, enquanto as listas são estruturas de dados que possuem índices numéricos, os dicionários possuem índices alfanuméricos, ou seja, no caso dos dicionários
+            os itens dentro deste possuem um certo "rótulo" (<strong> key </strong>) que pode ser usado para que se retorne o resultado desejado (<strong> value </strong>).
+            <br><br>
+            Para criar um dicionário, é necessário utilizar chaves (<strong>{ }</strong>) e, em seguida, os valores que serão armazenados no dicionário separados por vírgulas (<strong>","</strong>).
+            É possível armazenar qualquer tipo de dado dentro de um dicionário, como números, strings, booleanos, etc.
+        </p>
+
+        <br><br>
+
+        <h3 class="methods"> Métodos importantes de dicionário em Python:</h3>
+        <ul>
+            <li> <strong>clear()</strong>: remove todos os elementos do dicionário. </li>
+            <li> <strong>copy()</strong>: copia o dicionário. </li>
+            <li> <strong>fromkeys()</strong>: retorna um dicionário com as chaves e valores especificados. </li>
+            <li> <strong>get()</strong>: retorna o valor da chave especificada. </li>
+            <li> <strong>items()</strong>: retorna uma lista contendo uma tupla para cada par chave-valor. </li>
+            <li> <strong>keys()</strong>: retorna uma lista contendo as chaves do dicionário. </li>
+            <li> <strong>pop()</strong>: remove o elemento com a chave especificada. </li>
+            <li> <strong>popitem()</strong>: remove o último elemento inserido no dicionário. </li>
+            <li> <strong>setdefault()</strong>: retorna o valor da chave especificada. Se a chave não existir, insere a chave, com o valor especificado. </li>
+            <li> <strong>update()</strong>: atualiza o dicionário com os itens de um dicionário especificado. </li>
+            <li> <strong>values()</strong>: retorna uma lista de todos os valores do dicionário. </li>
+
+        </ul>
+
+        <br><br>
+
+        <p class="texto">Considere os exemplos a seguir:</p>
+
+        <code>
+            <span> dicionario = {"nome": "João", "idade": 20, "cidade": "São Paulo"} </span>
+            <br>
+            <span> print(dicionario["nome"])</span>
+        </code>
+
+        <br>
+        <span id="result"> Saída: "João"</span>
+
+        <br><br><br><br><br>
+
+        <code>
+            <span> dicionario = {"nome": "João", "idade": 20, "cidade": "São Paulo"} </span>
+            <br>
+            <span> dicionario["nome"] = "Maria"</span>
+            <br>
+            <span> print(dicionario)</span>
+        </code>
+
+        <br>
+        <span id="result"> Saída: {'nome': 'Maria', 'idade': 20, 'cidade': 'São Paulo'}</span>
+
+        <br><br><br><br><br>
+
+        <code>
+            <span> dicionario = {"nome": "João", "idade": 20, "cidade": "São Paulo"} </span>
+            <br>
+            <span> dicionario["email"] = "joao@gmail.com"</span>
+            <br>
+            <span> print(dicionario)</span>
+        </code>
+
+        <br>
+        <span id="result"> Saída: {'nome': 'João', 'idade': 20, 'cidade': 'São Paulo', 'email': joao@gmail.com'}</span>
+
+        <br><br><br><br><br>
+
+        <code>
+            <span> dicionario = {"nome": "João", "idade": 20, "cidade": "São Paulo"} </span>
+            <br>
+            <span> dicionario.pop("nome")</span>
+            <br>
+            <span> print(dicionario)</span>
+        </code>
+
+        <br>
+        <span id="result"> Saída: {'idade': 20, 'cidade': 'São Paulo'}</span>
+
+        <br><br><br><br><br>
+    </div>
+
+    
+
+
+
+
 
     
 </body>
