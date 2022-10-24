@@ -115,11 +115,7 @@ class MatriculaModel(db.Model):
     def toDict(self):
         return {'id user': self.id_user, 'id curso':self.id_curso, 'inicio':self.inicio, 'status':self.status, 'fim':self.fim, 'matricula': self.id_matricula}
 
-
-exercicios = db.Table('tbl_exercicios',
-                    db.Column('curso_id', db.Integer, db.ForeignKey('curso_model.id_curso')),
-                    db.Column('exercicio_id', db.Integer, db.ForeignKey('exercicios_model.id_exercicio'))
-                    )
+    
 
 class ExerciciosModel(db.Model):
 
