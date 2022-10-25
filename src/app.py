@@ -90,9 +90,9 @@ def terminal(id_curso,id_usuario):
 #     return render_template('index.html')
      
 api.add_resource(Curso, '/curso/<int:id_curso>')
-api.add_resource(Matricula, '/usuario/<int:id_usuario>/<int:id_matricula>')
-api.add_resource(Exercicio, '/curso/<int:id_curso>/<int:id_exercicio>')
-api.add_resource(Resposta, '/curso/<int:id_curso>/<int:id_resposta>')
+api.add_resource(Matricula, '/usuario/<int:id_usuario>/matricula/<int:id_matricula>')
+api.add_resource(Exercicio, '/curso/<int:id_curso>/exercicio/<int:id_exercicio>')
+api.add_resource(Resposta, '/curso/<int:id_curso>/resposta/<int:id_resposta>')
 api.add_resource(Usuario, '/usuario/<int:id_usuario>')
 
 

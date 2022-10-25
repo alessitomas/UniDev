@@ -40,7 +40,7 @@ class CursoModel(db.Model):
         return cls.query.all()        
 
     def toDict(self):
-        return {'id': self.id, 'nome':self.nome, 'linguagem':self.linguagem}
+        return {'id': self.id_curso, 'nome':self.nome_curso, 'linguagem':self.linguagem}
     
     def __str__(self):
         return f'{self.nome_curso}'
@@ -113,7 +113,7 @@ class MatriculaModel(db.Model):
         return cls.query.all()        
 
     def toDict(self):
-        return {'id user': self.id_user, 'id curso':self.id_curso, 'inicio':self.inicio, 'status':self.status, 'fim':self.fim, 'matricula': self.id_matricula}
+        return {'inicio': self.inicio, 'status':self.status, 'fim':self.fim, 'id matricula':self.id_matricula}
 
     
 
@@ -149,7 +149,7 @@ class ExerciciosModel(db.Model):
         return cls.query.all()        
 
     def toDict(self):
-        return {'id exercicio': self.id_exercicio, 'tela':self.tela, 'enunciado':self.enunciado, 'gabarito':self.gabarito, 'titulo': self.titulo}
+        return {'id exercicio': self.id_exercicio, 'tela':self.tela, 'enunciado':self.enunciado, 'gabarito':self.gabarito, 'titulo': self.titulo, 'pytest':self.pytest}
 
 class RespostasModel(db.Model):
 
@@ -179,4 +179,4 @@ class RespostasModel(db.Model):
         return cls.query.all()        
 
     def toDict(self):
-        return {'id exercicio':self.id_resposta, 'resposta':self.resposta}
+        return {'id exercicio':self.id_resposta, 'id resposta':self.resposta, 'id curso':self.id_curso, 'id usuario':self.id_usuario, 'id exercicio':self.id_exercicio}

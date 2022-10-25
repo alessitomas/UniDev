@@ -119,7 +119,15 @@ class Matricula(Resource):
     
 class Exercicio(Resource):
 
-    def get(self, id_exercicio):
+    def get(self,id_usuario, id_exercicio):
+
+        #fazer verificacoes sobre curso
+        #apresentar enunciado, titulo de acordo com o exercicio
+
+        usuario = UsuarioModel.find_by_id(id_usuario)
+
+
+
         exercicio = ExerciciosModel.find_by_id(id_exercicio)
 
         if exercicio:
@@ -130,13 +138,13 @@ class Exercicio(Resource):
     def post(self, id_exercicio):
         corpo = request.get_json( force=True )
 
-        matricula = MatriculaModel(id_exercicio=id_exercicio, **corpo) #AlunoModel(corpo['nome'], corpo['numero'])
+        exercicio = ExerciciosModel(id_exercicio=id_exercicio, **corpo) #AlunoModel(corpo['nome'], corpo['numero'])
         try:
-            matricula.save()
+            exercicio.save()
         except:
             return {"mensagem":"Ocorreu um erro interno ao tentar inserir um exercicio (DB)"}, 500
 
-        return matricula.toDict(), 201
+        return exercicio.toDict(), 201
 
     def put(self, id_exercicio):
         pass
