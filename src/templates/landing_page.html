@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='css/landing_page.css')}}">  
-    <link rel="icon" href="imagens/logo_browser.png">
+    <link rel="icon" href="{{url_for('static', filename='imagens/logo_browser.png')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
@@ -29,7 +29,7 @@
     <header>
         <div class="nav-wrapper">
             <div class="logo-container">
-                <img class="logo" src="imagens/logo_unidev.png" alt="Logo">
+                <img class="logo" src="{{url_for('static', filename='imagens/logo_unidev.png')}}" alt="Logo">
             </div>
             <nav>
                 <input class="hidden" type="checkbox" id="menuToggle">
@@ -52,7 +52,7 @@
 
     <div id="titulo"> 
         <h1> Aprenda a programar de uma maneira interativa e divertida na <strong>UniDev!</strong></h1>
-        <img src="imagens/imagem_landing_page.png">
+        <img src="{{url_for('static', filename='imagens/imagem_landing_page.png')}}">
     </div> 
 
     <div id="quem_somos">
@@ -72,27 +72,27 @@
         
         <div id="linguagens">
             <div class="python_curso">
-                    <img src="imagens/logo_python.png"/>
+                    <img src="{{url_for('static', filename='imagens/logo_python.png')}}"/>
                     <hr color="#F5A623">
                     <span class="caption">Python</span>
             </div>
     
             <div class="js_curso">
-                    <img src="imagens/logo_js.png"/>
+                    <img src="{{url_for('static', filename='imagens/logo_js.png')}}"/>
                     <hr color="#F5A623">
                     <span class="caption"> JavaScript </span>
                     <span class="status"> (em breve) </span>
             </div>
     
             <div class="html_curso">
-                    <img src="imagens/logo_html.png"/>
+                    <img src="{{url_for('static', filename='imagens/logo_html.png')}}"/>
                     <hr color="#F5A623">
                     <span class="caption"> HTML </span>
                     <span class="status"> (em breve) </span>
             </div>
     
             <div class="css_curso">
-                    <img src="imagens/logo_css.png"/>
+                    <img src="{{url_for('static', filename='imagens/logo_css.png')}}"/>
                     <hr color="#F5A623">
                     <span class="caption"> CSS </span>
                     <span class="status"> (em breve) </span>

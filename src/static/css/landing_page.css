@@ -306,6 +306,7 @@ hr {
 
 	.nav-wrapper{
 		width: 85%;
+		position: relative;
 	}
 
     #titulo {
