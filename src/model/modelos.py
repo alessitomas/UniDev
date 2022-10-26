@@ -4,10 +4,6 @@ from sqlalchemy.orm import declarative_base
 from sqlalchemy import *
 from model.sql_alchemy_para_db import db
 import sqlalchemy
-from flask_login import UserMixin
-
-
-
 
 
 class CursoModel(db.Model):
@@ -77,7 +73,8 @@ class UsuarioModel(db.Model):
         return cls.query.all()        
 
     def toDict(self):
-        return {'id': self.id, 'nome':self.nome, 'numero':self.username, 'email':self.email}
+        return {'nome':self.nome, 'username':self.username, 'email': self.email, 'senha': self.senha}
+    
     def __str__(self):
         return f'{self.nome}'
 
