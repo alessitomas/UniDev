@@ -244,17 +244,14 @@ class Login(Resource):
         pass
 
     def post(self):
-        corpo = request.get_json( force=True )
-        user = UsuarioModel.query.filter_by(username=corpo['username']).first()
 
-
+        corpo =request.get_json(force=True)
+        user = UsuarioModel.query.filter_by(id=corpo['id_user']).first()
         if user:
-            if user.senha == corpo['senha']:
-                print('aqui222')
-                return {'mensagem':'Voce está logado'}, 201
-            else:
-                print('aqui333')
-                return {'mensagem':'Senha incorreta'}, 404
+            return {'status':True,'id_user':corpo['id_user']}, 200
+        else:
+
+            return {'status':False}, 404
 
     def put(self):
         pass
