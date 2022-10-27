@@ -1,13 +1,12 @@
 $(document).ready(function () {
 
-    $("#meu-form").submit(function (event) {
+    $("#form-login").submit(function (event) {
       
       event.preventDefault();
-  
    
   
       var settings = {
-        "url": "usuario/",
+        "url": "login/",
         "method": "POST",
         "timeout": 0,
         "headers": {
@@ -24,9 +23,8 @@ $(document).ready(function () {
         console.log(response);
   
 
-        $("#ul-resp").append("<li>nome:" + response.nome + "</li>")
-        $("#ul-resp").append("<li>username:" + response.isbn + "</li>")
-        $("#ul-resp").append("<li>email:" + response.nome + "</li>")
+        $("#ul-resp").append("<li>username:" + response.username + "</li>")
+        $("#ul-resp").append("<li>senha:" + response.senha + "</li>")
 
   
       });

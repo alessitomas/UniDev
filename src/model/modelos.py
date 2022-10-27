@@ -48,7 +48,7 @@ class UsuarioModel(db.Model):
     nome = db.Column(db.String(80))
     username = db.Column(db.String(20))
     email = db.Column(db.String(20))
-    senha = db.Column(db.String(20))
+    senha = db.Column(db.String(20), unique=True)
     def __init__(self,nome, username, email,senha):
         self.nome = nome
         self.username = username
