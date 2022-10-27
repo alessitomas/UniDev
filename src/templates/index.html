@@ -2,6 +2,8 @@
 
 <head>
   <meta charset="UTF-8">
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script type = "text/javascript" src = "{{ url_for('static', filename = 'js/terminal.js') }}" ></script>	
   <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
   <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
   <script type="module" src="https://cdn.jsdelivr.net/gh/vanillawc/wc-monaco-editor@1/index.js"></script>
@@ -12,7 +14,7 @@
     - paths:
       - ../static/main2.py
       - ../static/solution.py
-      - ../static/test_{{id_exercicio}}.py
+      - ../static/test_1.py
   </py-env>
   <style>
 
@@ -118,9 +120,10 @@
   <div id="body_div">
   <section id="app">
     <div class = "esquerdo">
-      <h1> Exercício: {{titulo}}</h1>
+
+      <h1> Exercício: <p id="titulo"></p></h1>
       <div class="enunciado">
-        <p>{{enunciado}</p>
+        <p id="enunciado"></p>
 
       </div>
     </div>
@@ -142,7 +145,7 @@
     <button class="next_button">Voltar</button>
     <div class="progresso">
       <h2>PROGRESSO</h2>
-        <h3>{{tela}}/3</h3>
+        <h3><a id="tela" ></a>/3</h3>
     </div>
     
     <button class="next_button" >Próximo</button>

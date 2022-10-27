@@ -85,7 +85,7 @@ api.add_resource(Matricula, '/usuario/<int:id_usuario>/matricula/<int:id_matricu
 api.add_resource(Exercicio, '/curso/<int:id_curso>/exercicio/<int:id_exercicio>')
 api.add_resource(Resposta, '/curso/<int:id_curso>/resposta/<int:id_resposta>')
 api.add_resource(Usuario, '/usuario/')
-# api.add_resource(Login, '/usuario/')
+api.add_resource(Terminal, '/terminal/')
 
 
 
