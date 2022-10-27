@@ -73,11 +73,15 @@ def cursos():
 
 @app.route('/log/')
 def log():
-    return render_template('login.html')
+    id_user = request.args.get('id_user')
+    print(id_user)
+    return render_template('login.html',paramKey=id_user)
 
 @app.route('/code/')
 def code():
-    return render_template('index.html')
+    id_curso = request.args.get('id_user')
+    print(id_curso)
+    return render_template('index.html', paramKey=id_curso)
 
 
 
@@ -92,7 +96,7 @@ api.add_resource(Matricula, '/usuario/<int:id_usuario>/matricula/<int:id_matricu
 api.add_resource(Exercicio, '/curso/<int:id_curso>/exercicio/<int:id_exercicio>')
 api.add_resource(Resposta, '/curso/<int:id_curso>/resposta/<int:id_resposta>')
 api.add_resource(Usuario, '/usuario/')
-api.add_resource(Terminal, '/terminal/<int:id>')
+api.add_resource(Terminal, '/terminal/<int:id_curso>')
 api.add_resource(Login, '/log/login/')
 # api.add_resource(Login, '/usuario/')
 

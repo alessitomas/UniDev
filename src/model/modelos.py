@@ -128,6 +128,7 @@ class ExerciciosModel(db.Model):
     enunciado = db.Column(db.String(4000), nullable = False)
     gabarito = db.Column(db.String(4000), nullable = False)
     id_curso = db.Column(db.Integer)
+    
     def __init__(self, id_exercicio,tela, enunciado, gabarito, pytest, titulo, id_curso):
         self.id_exercicio = id_exercicio
         self.tela = tela
