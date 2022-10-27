@@ -28,7 +28,6 @@ def run_tests(e):
     if "8 passed" in err.getvalue():
         pyscript.write('pytest-output', 'passou')
     else:
-
         pyscript.write('pytest-output', err.getvalue())
 
 
