@@ -1,10 +1,6 @@
 $(document).ready(function () {
-
     $("#form-login").submit(function (event) {
-      
       event.preventDefault();
-   
-  
       var settings = {
         "url": "/login",
         "method": "POST",
@@ -13,8 +9,6 @@ $(document).ready(function () {
           "Content-Type": "application/json"
         },
         "data": JSON.stringify({
-
-
           "id_user": $("#id_user").val()
         }),
       };
@@ -23,17 +17,13 @@ $(document).ready(function () {
 
 
       $.ajax(settings).done(function (response) {
-        console.log(response.status, 'testeeeeee');
+        console.log(response.status);
         if (response.status) {
 
           localStorage.setItem('id_user_ativo',response.id_user);
           window.location.href = "/cursos";
 
         }
-
-
-
-          
       });
     });
   

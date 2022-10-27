@@ -201,10 +201,11 @@ class Resposta(Resource):
 
 # id_curso, id_usuario
 class Terminal(Resource):
-    def get(self,id_curso):
-        id_usuario=2
+    def get(self,id_user_ativo,id_curso_ativo):
+        print(id_user_ativo,id_curso_ativo)
+        return {'titulo':"raiz", 'enunciado':"raiz"}
 
-        {'titulo':'jdjhshshs'}
+
 
 
         # exercicios = ExerciciosModel.search_all()

@@ -81,7 +81,8 @@ def logar():
 def code():
     # id_curso = request.args.get('id_user')
     # print(id_curso)
-    return render_template('index.html', )
+    return render_template('index.html')
+
 
 
 
@@ -96,7 +97,7 @@ api.add_resource(Matricula, '/usuario/<int:id_usuario>/matricula/<int:id_matricu
 api.add_resource(Exercicio, '/curso/<int:id_curso>/exercicio/<int:id_exercicio>')
 api.add_resource(Resposta, '/curso/<int:id_curso>/resposta/<int:id_resposta>')
 api.add_resource(Usuario, '/usuario/')
-api.add_resource(Terminal, '/terminal/<int:id_curso>')
+api.add_resource(Terminal, '/terminal/<string:id_user_ativo>/curso/<string:id_curso_ativo>/')
 api.add_resource(Login, '/login/')
 # api.add_resource(Login, '/usuario/')
 
