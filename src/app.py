@@ -1,4 +1,5 @@
 #from flask_login import LoginManager
+from crypt import methods
 from flask import Flask, request, jsonify, render_template, redirect, url_for
 #from flask_admin import Admin
 from flask_sqlalchemy import SQLAlchemy
@@ -47,9 +48,9 @@ def create_tables():
 def menu():
     return render_template('landing_page.html')
 
-@app.route('/form_usuario')
+@app.route('/user')
 def form_usuario():
-    return render_template('form_usuario.html')
+    return render_template('registro.html')
 
     # if request.method == 'POST':
     #     nome = request.form['name']
