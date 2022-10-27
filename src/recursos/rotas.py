@@ -1,3 +1,4 @@
+import resource
 from flask_restful import Resource
 from flask import request, jsonify
 import sqlalchemy
@@ -191,3 +192,41 @@ class Resposta(Resource):
             return {'mensagem': 'Resposta deletado da base.'}
 
         return {'mensagem': 'Resposta não encontrada.'}, 404
+
+
+class Terminal(resource):
+    def get(self, id_curso, id_usuario):
+
+        exercicios = ExerciciosModel.search_all()
+        matriculas = MatriculaModel.search_all()
+        
+        for matricula in matriculas:
+            if matricula.id_curso == id_curso and matricula.id_usuario == id_usuario:
+                respostas = RespostasModel.search_all()
+                lista_tela = []
+                for resp in respostas:
+                    if resp.id_usuario == id_usuario and resp.id_curso == id_curso:
+                        lista_tela.append(resp.tela)  #pego a maior tela que ele fez
+                
+                tela_a_fazer = max(lista_tela)+1      #a proxima a ser feita
+                
+                
+                for ex in exercicios:
+                    if ex.tela == tela_a_fazer and ex.id_curso == id_curso:
+                        return ex.toDict()
+
+        for ex in exercicios:
+            if ex.tela == 1 and ex.id_curso == id_curso:
+                return ex.toDict()
+    
+
+
+    def post(self):
+        pass
+
+    
+
+        
+
+
+                    
