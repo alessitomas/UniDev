@@ -12,7 +12,7 @@
     - paths:
       - ../static/main2.py
       - ../static/solution.py
-      - ../static/test_sol.py
+      - ../static/test_{{id_exercicio}}.py
   </py-env>
   <style>
 
@@ -118,11 +118,10 @@
   <div id="body_div">
   <section id="app">
     <div class = "esquerdo">
-      <h1> Exercício: Área do Círculo</h1>
+      <h1> Exercício: {{titulo}}</h1>
       <div class="enunciado">
-        <p>Faça uma função que recebe o raio de um círculo e devolve a sua área.</p>
+        <p>{{enunciado}</p>
 
-        <p>O nome da sua função deve ser <code>calcula_area_do_circulo.</code></p>
       </div>
     </div>
     <div class = "meio">
@@ -143,7 +142,7 @@
     <button class="next_button">Voltar</button>
     <div class="progresso">
       <h2>PROGRESSO</h2>
-        <h3>4/10</h3>
+        <h3>{{tela}}/3</h3>
     </div>
     
     <button class="next_button" >Próximo</button>

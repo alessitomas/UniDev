@@ -243,12 +243,14 @@ class Terminal(resource):
 
         for ex in exercicios:
             if ex.tela == 1 and ex.id_curso == id_curso:
-                return ex.toDict()
+                return ex.toDict()  
     
 
 
-    def post(self):
-        pass
+    def post(self, id_curso, id_usuario):
+        resposta_usuario = request.get_json(force=True)
+        resposta = RespostasModel(id_curso=id_resposta) #AlunoModel(corpo['nome'], corpo['numero'])
+
 
     
 
