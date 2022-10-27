@@ -1,4 +1,3 @@
-import resource
 from flask_restful import Resource
 from flask import request, jsonify
 import sqlalchemy
@@ -201,7 +200,7 @@ class Resposta(Resource):
         return {'mensagem': 'Resposta não encontrada.'}, 404
 
 
-class Terminal(resource):
+class Terminal(Resource):
     def get(self, id_curso, id_usuario):
 
         exercicios = ExerciciosModel.search_all()

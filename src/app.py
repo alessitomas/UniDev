@@ -1,5 +1,4 @@
 #from flask_login import LoginManager
-from crypt import methods
 from flask import Flask, request, jsonify, render_template, redirect, url_for
 #from flask_admin import Admin
 from flask_sqlalchemy import SQLAlchemy
