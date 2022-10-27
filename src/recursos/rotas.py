@@ -8,6 +8,32 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo
 
 
+# class Login(Resource):
+
+#     def post(self):
+
+#         corpo = request.get_json( force=True )
+
+        
+#         try:
+            
+#         except:
+#             return {"mensagem":"Ocorreu um erro interno ao tentar inserir um curso (DB)"}, 500
+
+#         return user.toDict(), 201
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Curso(Resource):
 
     def get(self, id_curso):
@@ -54,10 +80,10 @@ class Usuario(Resource):
         return {'id': None}, 404
 
 
-    def post(self, id_usuario):
-        corpo = request.get_json( force=True )
+    def post(self):
 
-        user = UsuarioModel(id_usuario=id_usuario, **corpo) #AlunoModel(corpo['nome'], corpo['numero'])
+        corpo = request.get_json( force=True )
+        user = UsuarioModel(**corpo) 
         try:
             user.save()
         except:

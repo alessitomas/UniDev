@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylehseet" href="{{ url_for('static', filename='css/pos_login.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='imagens/logo_pagina.png') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
+
+    <title>Selecionar curso - UniDev</title>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-wrapper indigo">
+          <a href="#" class="brand-logo"><img src="{{url_for ('static', filename='imagens/logo_pagina.png')}}" style="width: 60px;"></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="collapsible.html" style="font-family: 'Poppins', sans-serif;">Logout</a></li>
+          </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-links">
+        <li><a href="collapsible.html" style="font-family: 'Poppins', sans-serif;">Logout</a></li>
+    </ul>
+
+    <h2 style="display: flex; justify-content: center; margin-top: 5%; font-family: 'Poppins', sans-serif;"> Selecione o curso que deseja acessar </h2>
+    
+    <div id="linguagens" style="display: flex; justify-content: center;">
+        <div class="python_curso" style="    vertical-align: top;
+        width: 200px;
+        display: inline-block;
+        text-align: center;
+        margin-top: 3%;
+        margin-right: 3%;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.51);
+        padding-top: 2%;
+        padding-bottom: 2%;
+        padding-right: 1%;
+        padding-left: 1%;">
+                <img src="{{url_for('static', filename='imagens/logo_python.png')}}" style="width: 120px;"/>
+                <span style="display: block;text-align: center; font-family: 'Source Code Pro', monospace; font-size: 25px;"><a href="" style="color: black; text-decoration: underline;">Python</a></span>
+        </div>
+
+        <div class="js_curso" style="vertical-align: top;
+        display: inline-block;
+        text-align: center;
+        width: 200px;
+        margin-top: 3%;
+        margin-right: 3%;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.51);
+        padding-top: 2%;
+        padding-bottom: 2%;
+        padding-right: 1%;
+        padding-left: 1%;" >
+                <img src="{{url_for('static', filename='imagens/logo_js.png')}}" style="width: 120px;"/>
+                <span class="caption" style="display: block; text-align: center; font-family: 'Source Code Pro', monospace; font-size: 25px; margin-top: 10%;"> <a href="" style="color: black; text-decoration: underline;">JavaScript</a> </span>
+                <span class="status" style="display: block;text-align: center; font-family: 'Source Code Pro', monospace; font-size: 25px; color: rgb(219, 54, 54);"> (em breve) </span>
+        </div>
+
+        <div class="html_curso" style="vertical-align: top;
+        display: inline-block;
+        text-align: center;
+        width: 200px;
+        margin-top: 3%;
+        margin-right: 3%;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.51);
+        padding-top: 2%;
+        padding-bottom: 2%;
+        padding-right: 1%;
+        padding-left: 1%;">
+                <img src="{{url_for('static', filename='imagens/logo_html.png')}}" style="width: 120px;"/>
+                <span class="caption" style="display: block;text-align: center; font-family: 'Source Code Pro', monospace; font-size: 25px; margin-top: 10%;" > <a href="" style="color: black; text-decoration: underline;">HTML</a> </span>
+                <span class="status" style="display: block;text-align: center; font-family: 'Source Code Pro', monospace; font-size: 25px; color: rgb(219, 54, 54);"> (em breve) </span>
+        </div>
+
+
+        <div class="css_curso" style="vertical-align: top;
+        display: inline-block;
+        text-align: center;
+        width: 200px;
+        margin-top: 3%;
+        margin-right: 3%;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.51);
+        padding-top: 2%;
+        padding-bottom: 2%;
+        padding-right: 1%;
+        padding-left: 1%;">
+                <img src="{{url_for('static', filename='imagens/logo_css.png')}}" style="width: 120px;"/>
+                <span class="caption" style="display: block;text-align: center; font-family: 'Source Code Pro', monospace; font-size: 25px; margin-top: 10%;"> <a href="" style="color: black; text-decoration: underline;">CSS</a> </span>
+                <span class="status" style="display: block;text-align: center; font-family: 'Source Code Pro', monospace; font-size: 25px; color: rgb(219, 54, 54);"> (em breve) </span>
+        </div>
+</body>
+</html>

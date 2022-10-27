@@ -37,50 +37,41 @@ api = Api(app)
 #login_manager = LoginManager()
 #login_manager.init_app(app)
 
+
 @app.before_first_request
 def create_tables():
     db.create_all()
+# apenas reendenização de templates
 
 @app.route('/')
 def menu():
     return render_template('landing_page.html')
 
-@app.route('/registro/', methods=('GET', 'POST'))
-def registro():
-    if request.method == 'POST':
-        nome = request.form['name']
-        username = request.form['username']
-        email = request.form['email']
-        senha = request.form['pass']
-    
-        student = UsuarioModel(nome=nome,
-                          username=username,
-                          email=email,
-                          senha=senha,
-                        )
-        student.save()
-    return render_template('registro.html')
+@app.route('/form_usuario')
+def form_usuario():
+    return render_template('form_usuario.html')
 
-@app.route('/login/', methods=('GET', 'POST'))
+    # if request.method == 'POST':
+    #     nome = request.form['name']
+    #     username = request.form['username']
+    #     email = request.form['email']
+    #     senha = request.form['pass']
+    
+    #     student = UsuarioModel(nome=nome,
+    #                       username=username,
+    #                       email=email,
+    #                       senha=senha,
+    #                     )
+    #     student.save()
+    # return render_template('registro.html')
+
+@app.route('/login/')
 def login():
     return render_template('login.html')
-
-
-@app.route('/code/', methods=('GET', 'POST'))
+@app.route('/code/')
 def code():
     return render_template('index.html')
 
-
-@app.route('/<int:id_curso>/<int:id_usuario>', methods=('GET', 'POST'))
-def terminal(id_curso,id_usuario):
-    
-
-
-
-
-
-
-    return render_template('index.html')
 
 
 
@@ -93,7 +84,8 @@ api.add_resource(Curso, '/curso/<int:id_curso>')
 api.add_resource(Matricula, '/usuario/<int:id_usuario>/matricula/<int:id_matricula>')
 api.add_resource(Exercicio, '/curso/<int:id_curso>/exercicio/<int:id_exercicio>')
 api.add_resource(Resposta, '/curso/<int:id_curso>/resposta/<int:id_resposta>')
-api.add_resource(Usuario, '/usuario/<int:id_usuario>')
+api.add_resource(Usuario, '/usuario/')
+# api.add_resource(Login, '/usuario/')
 
 
 
