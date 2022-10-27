@@ -65,6 +65,12 @@ def form_usuario():
     #     student.save()
     # return render_template('registro.html')
 
+@app.route('/cursos/')
+def cursos():
+
+    return render_template('pos_login.html')
+
+
 @app.route('/log/')
 def log():
     return render_template('login.html')
@@ -86,7 +92,7 @@ api.add_resource(Matricula, '/usuario/<int:id_usuario>/matricula/<int:id_matricu
 api.add_resource(Exercicio, '/curso/<int:id_curso>/exercicio/<int:id_exercicio>')
 api.add_resource(Resposta, '/curso/<int:id_curso>/resposta/<int:id_resposta>')
 api.add_resource(Usuario, '/usuario/')
-api.add_resource(Terminal, '/terminal/')
+api.add_resource(Terminal, '/terminal/<int:id>')
 api.add_resource(Login, '/log/login/')
 # api.add_resource(Login, '/usuario/')
 

@@ -201,36 +201,37 @@ class Resposta(Resource):
 
 # id_curso, id_usuario
 class Terminal(Resource):
-    def get(self):
-        x = {"titulo": "Raiz Quadradada", "enunciado": "Crie uma função capaz de calcular a raiz de um valor x", "tela": "2", "pytest":"2"}
-        return jsonify(x)
-    #     exercicios = ExerciciosModel.search_all()
-    #     matriculas = MatriculaModel.search_all()
-        
-    #     for matricula in matriculas:
-    #         if matricula.id_curso == id_curso and matricula.id_usuario == id_usuario:
-    #             respostas = RespostasModel.search_all()
-    #             lista_tela = []
-    #             for resp in respostas:
-    #                 if resp.id_usuario == id_usuario and resp.id_curso == id_curso:
-    #                     lista_tela.append(resp.tela)  #pego a maior tela que ele fez
-                
-    #             tela_a_fazer = max(lista_tela)+1      #a proxima a ser feita
-                
-                
-    #             for ex in exercicios:
-    #                 if ex.tela == tela_a_fazer and ex.id_curso == id_curso:
-    #                     return ex.toDict()
+    def get(self,id_curso):
+        id_usuario=1
 
-    #     for ex in exercicios:
-    #         if ex.tela == 1 and ex.id_curso == id_curso:
-    #             return ex.toDict()  
+
+        exercicios = ExerciciosModel.search_all()
+        matriculas = MatriculaModel.search_all()
+        
+        for matricula in matriculas:
+            if matricula.id_curso == id_curso and matricula.id_usuario == id_usuario:
+                respostas = RespostasModel.search_all()
+                lista_tela = []
+                for resp in respostas:
+                    if resp.id_usuario == id_usuario and resp.id_curso == id_curso:
+                        lista_tela.append(resp.tela)  #pego a maior tela que ele fez
+                
+                tela_a_fazer = max(lista_tela)+1      #a proxima a ser feita
+                
+                
+                for ex in exercicios:
+                    if ex.tela == tela_a_fazer and ex.id_curso == id_curso:
+                        return ex.toDict()
+
+        for ex in exercicios:
+            if ex.tela == 1 and ex.id_curso == id_curso:
+                return ex.toDict()  
     
 
 
-    # def post(self, id_curso, id_usuario):
-    #     resposta_usuario = request.get_json(force=True)
-    #     resposta = RespostasModel(id_curso=id_resposta) #AlunoModel(corpo['nome'], corpo['numero'])
+    def post(self, id_curso, id_usuario):
+        resposta_usuario = request.get_json(force=True)
+        resposta = RespostasModel(id_curso=id_resposta) #AlunoModel(corpo['nome'], corpo['numero'])
 
 
 
