@@ -1,4 +1,3 @@
-import resource
 from flask_restful import Resource
 from flask import request, jsonify
 import sqlalchemy
@@ -6,28 +5,6 @@ from model.modelos import *
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo
-
-
-# class Login(Resource):
-
-#     def post(self):
-
-#         corpo = request.get_json( force=True )
-
-        
-#         try:
-            
-#         except:
-#             return {"mensagem":"Ocorreu um erro interno ao tentar inserir um curso (DB)"}, 500
-
-#         return user.toDict(), 201
-
-
-
-
-
-
-
 
 
 
@@ -81,16 +58,19 @@ class Usuario(Resource):
 
 
     def post(self):
-
         corpo = request.get_json( force=True )
-        user = UsuarioModel(**corpo) 
-        try:
-            user.save()
-        except:
-            return {"mensagem":"Ocorreu um erro interno ao tentar inserir um curso (DB)"}, 500
+        if corpo['senha'] == corpo['senha2']:
+            user = UsuarioModel(corpo['nome'], corpo['username'], corpo['email'], corpo['senha']) 
+            try:
+                user.save()
+            except:
+                return {"mensagem":"Ocorreu um erro interno ao tentar inserir um curso (DB)"}, 500
 
-        return user.toDict(), 201
-
+            return user.toDict(), 201
+        else:
+            print('senhas diferentes')
+            return {"mensagem": "Senha não confere."}, 401
+    
     def put(self, id_usuario):
         pass
     
@@ -220,7 +200,7 @@ class Resposta(Resource):
         return {'mensagem': 'Resposta não encontrada.'}, 404
 
 
-class Terminal(resource):
+class Terminal(Resource):
     def get(self, id_curso, id_usuario):
 
         exercicios = ExerciciosModel.search_all()
