@@ -119,20 +119,20 @@ class ExerciciosModel(db.Model):
 
 class RespostasModel(db.Model):
 
-    id_resposta = db.Column(db.Integer, primary_key = True)
+    id_resposta = db.Column(db.Integer, primary_key=True, autoincrement = True )
     id_curso = db.Column(db.Integer)
     id_usuario = db.Column(db.Integer)
     id_exercicio = db.Column(db.Integer)
     resposta = db.Column(db.String(4000))
     tela = db.Column(db.Integer)
 
-    def __init__(self,  id_resposta,id_curso,id_usuario,id_exercicio, ultimo_exr):
+    def __init__(self,id_curso,id_usuario,id_exercicio,resposta,tela):
 
-        self.id_resposta = id_resposta
         self.id_curso = id_curso
         self.id_usuario = id_usuario
         self.id_exercicio = id_exercicio
-        self.ultimo_exr = ultimo_exr
+        self.resposta = resposta
+        self.tela = tela
     
     def save(self):
         db.session.add(self)
