@@ -151,6 +151,7 @@
     <button class="next_button" onclick="sendtela()" >Próximo</button>
     <script>
       function sendtela() {
+        window.location.reload();
         var xhr = new XMLHttpRequest();
         console.log("salvando curso");
         console.log('http://127.0.0.1:5000/terminal/'+localStorage.getItem('id_user_ativo').toString()+'/curso/'+localStorage.getItem('id_curso_ativo').toString()+ '/exercico/' +localStorage.getItem('tela').toString());

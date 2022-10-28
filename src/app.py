@@ -100,14 +100,20 @@ api.add_resource(Usuario, '/usuario/')
 api.add_resource(Terminal, '/terminal/<string:id_user_ativo>/curso/<string:id_curso_ativo>/')
 api.add_resource(Login, '/login/')
 
-@app.route('/terminal/<string:id_user_ativo>/curso/<string:id_curso_ativo>/exercicio/<string:tela>', methods=['POST'])
+@app.route('/terminal/<int:id_user_ativo>/curso/<int:id_curso_ativo>/exercicio/<int:tela>', methods=['POST'])
 def salvarexr(id_user_ativo, id_curso_ativo, tela):
-    corpo = request.get_json( force=True )
+    corpo = request.get_json( force=True)
+    exr = ExerciciosModel.query.filter_by(id_curso=id_curso_ativo).first()
+    print(exr,id_curso_ativo,tela)
     
-    resposta = RespostasModel(id_user_ativo=id_user_ativo, id_curso_ativo=id_curso_ativo, tela=tela, resposta=corpo['exr'])
+    resposta = RespostasModel(id_usuario=id_user_ativo, id_curso=id_curso_ativo, tela=tela, resposta=corpo['exr'], id_exercicio=exr.id_exercicio)
+    try:
+        resposta.save()
+        return jsonify({'message': 'salvo com sucesso'})
+    except:
+        return jsonify({'message': 'erro ao salvar'})
 
-
-
+    return exr.toDict(),200
 
 
 

@@ -210,31 +210,32 @@ class Terminal(Resource):
         respostas = RespostasModel.search_all()
 
         exercicios = ExerciciosModel.search_all()
-
+        telas = []
         for resposta in respostas:
-
+            
             if str(resposta.id_curso) == str(id_curso_ativo) and str(resposta.id_usuario) == str(id_user_ativo):
-                tela_a_fazer = resposta.ultimo_exr + 1
-
-                if int(tela_a_fazer) > int(curso.numero_telas):
-                    return {'titulo': 'Curso concluido'}
-
-                for ex in exercicios:
-                    if int(ex.tela) == int(tela_a_fazer) and int(ex.id_curso) == int(id_curso_ativo):
-
-                        return ex.toDict() 
+                telas.append(resposta.tela)
 
 
-        
-        for ex in exercicios:
-            print(ex.tela,ex.id_curso)
-            if ex.tela == 1 and ex.id_curso == id_curso_ativo:
+        if len(telas) != 0:
+            tela_a_fazer = max(telas) + 1
+            if int(tela_a_fazer) > int(curso.numero_telas):
+                return {'titulo': 'Curso concluido'}
+            print("entrou no if")
 
-                return ex.toDict()
+            for ex in exercicios:
+                if int(ex.tela) == int(tela_a_fazer) and int(ex.id_curso) == int(id_curso_ativo):
+                    print("teste2")
+                    return ex.toDict() 
 
-
-
-
+        else:
+            print("entrou no else")
+            for ex in exercicios:
+                print(ex.tela,ex.id_curso)
+                print(id_curso_ativo)
+                if int(ex.tela) == 1 and int(ex.id_curso) == int(id_curso_ativo):
+                    print("teste2")
+                    return ex.toDict()
 
     def post(self,id_user_ativo,id_curso_ativo):
         corpo = request.get_json( force=True )
