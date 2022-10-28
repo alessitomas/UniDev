@@ -132,9 +132,6 @@ class Exercicio(Resource):
         #apresentar enunciado, titulo de acordo com o exercicio
 
         usuario = UsuarioModel.find_by_id(id_usuario)
-
-
-
         exercicio = ExerciciosModel.find_by_id(id_exercicio)
 
         if exercicio:
@@ -201,42 +198,45 @@ class Resposta(Resource):
 
 # id_curso, id_usuario
 class Terminal(Resource):
+# titulo
     def get(self,id_user_ativo,id_curso_ativo):
-        print(id_user_ativo,id_curso_ativo)
-        return {'titulo':"raiz", 'enunciado':"raiz"}
+        user = UsuarioModel.query.filter_by(id=id_user_ativo).first()
+        curso = CursoModel.query.filter_by(id_curso=id_curso_ativo).first()
+        reposta = {'user':user.toDict(), 'curso':curso.toDict()}
+        
+        print(user,curso)
+        print(user.nome,curso.nome_curso)
 
-
-
-
-        # exercicios = ExerciciosModel.search_all()
-        # matriculas = MatriculaModel.search_all()
-        # print("teste1")
-        # for matricula in matriculas:
-        #     if matricula.id_curso == id_curso and matricula.id_usuario == id_usuario:
-        #         respostas = RespostasModel.search_all()
-        #         lista_tela = []
-        #         for resp in respostas:
-        #             if resp.id_usuario == id_usuario and resp.id_curso == id_curso:
-        #                 lista_tela.append(resp.tela)  #pego a maior tela que ele fez
+   
+    #     exercicios = ExerciciosModel.search_all()
+    #     matriculas = MatriculaModel.search_all()
+    #     print("teste1")
+    #     for matricula in matriculas:
+    #         if matricula.id_curso == id_curso_ativo and matricula.id_usuario == id_user_ativo:
+    #             respostas = RespostasModel.search_all()
+    #             lista_tela = []
+    #             for resp in respostas:
+    #                 if resp.id_usuario == id_user_ativo and resp.id_curso == id_user_ativo:
+    #                     lista_tela.append(resp.tela)  #pego a maior tela que ele fez
                 
-        #         tela_a_fazer = max(lista_tela)+1      #a proxima a ser feita
+    #             tela_a_fazer = max(lista_tela)+1      #a proxima a ser feita
                 
                 
-        #         for ex in exercicios:
-        #             if ex.tela == tela_a_fazer and ex.id_curso == id_curso:
-        #                 print("teste2")
-        #                 return ex.toDict()
+    #             for ex in exercicios:
+    #                 if ex.tela == tela_a_fazer and ex.id_curso == id_user_ativo:
+    #                     print("teste2")
+    #                     return ex.toDict()
 
-        # for ex in exercicios:
-        #     if ex.tela == 1 and ex.id_curso == id_curso:
-        #         print("teste2")
-        #         return ex.toDict()  
+    #     for ex in exercicios:
+    #         if ex.tela == 1 and ex.id_curso == id_curso_ativo:
+    #             print("teste2")
+    #             return ex.toDict()  
     
 
 
-    def post(self, id_curso, id_usuario):
-        resposta_usuario = request.get_json(force=True)
-        resposta = RespostasModel(id_curso=id_resposta) #AlunoModel(corpo['nome'], corpo['numero'])
+    # def post(self, id_curso, id_usuario):
+    #     resposta_usuario = request.get_json(force=True)
+    #     resposta = RespostasModel(id_curso=id_resposta) #AlunoModel(corpo['nome'], corpo['numero'])
 
 
 
