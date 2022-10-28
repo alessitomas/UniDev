@@ -4,102 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form by Colorlib</title>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-    <!--script src="meu_script.js"></script-->
-    <script type = "text/javascript" src = "{{ url_for('static', filename = 'js/login.js') }}" ></script>	
-
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="icon" href="{{url_for('static', filename='imagens/logo_pagina.png')}}">
+    <title>Fazer Login - UniDev</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}">
 
 </head>
 <body>
 
-    <div class="main">
-        <!-- Sign up form -->
-        <section class="login">
-            <div class="container">
-                <div class="signup-content">
-                    <div class="signup-form">
-                        <h2 class="form-title">Login</h2>
-                        <form  methods="POST" class="login-form" id="form-login">
-                            
-                            <div class="form-group">
-                                <label for="id_user"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input             
-                                type="text"
-                                class="form-control"
-                                id="id_user"
-                                name="id_user"
-                                placeholder="id_user"/>
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m6 offset-m3">
+                <div class="card">
+                    <div class="card-content center-align">
+                        <img src="{{url_for('static', filename='imagens/logo_unidev.png')}}" alt="Logo UniDev" class="logo">
+                        <h2 class="center"> Seja bem-vindo!</h2>
+                        <span class="card-title center">Faça login para continuar</span>
+                        <form action="{{url_for('login')}}" method="POST">
+                            <div class="input-field">
+                                <input type="text" name="text" id="text">
+                                <label for="text">ID</label>
                             </div>
 
-                           
-                            <div class="form-group form-button">
-                                <input  type="submit" class="form-submit" value="Login"/>
-                            </div>
+                            <br>
+
+                            <span class="register"> Não possui uma conta?<a href="../user">Cadastre-se</a></span>
+
+                            <br><br><br>
+
+                            <button class="btn waves-effect waves-light indigo" type="submit" name="action">Entrar</button>
                         </form>
-                    </div>
-                    <div class="signup-image">
-                        <figure><img src="{{url_for('static', filename='images/teste1.png')}}" alt="sing up image"></figure>
-                        <a href="/user" class="signup-image-link">Criar Conta</a>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Sing in  Form -->
-        <!-- <section class="sign-in">
-            <div class="container">
-                <div class="signin-content">
-                    <div class="signin-image">
-                        <figure><img src="images/signin-image.jpg" alt="sing up image"></figure>
-                        <a href="#" class="signup-image-link">Create an account</a>
-                    </div>
-
-                    <div class="signin-form">
-                        <h2 class="form-title">Sign up</h2>
-                        <form method="POST" class="register-form" id="login-form">
-                            <div class="form-group">
-                                <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="your_name" id="your_name" placeholder="Your Name"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="your_pass" id="your_pass" placeholder="Password"/>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
-                                <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
-                            </div>
-                            <div class="form-group form-button">
-                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
-                            </div>
-                        </form>
-                        <div class="social-login">
-                            <span class="social-label">Or login with</span>
-                            <ul class="socials">
-                                <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
-                                <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
-                                <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </div> -->
-
-    <!-- JS -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="js/main.js"></script>
-
-
-    <div class="col-sm-6 col-sm-offset-3" id="div-respostas">
-    <h2>Resposta</h2>
-    <ul id="ul-resp"></ul>
-
+        </div>
     </div>
-  
+
+    
+
 </body>
-</html>
+
+    
