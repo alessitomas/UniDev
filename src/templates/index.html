@@ -148,7 +148,19 @@
         <h3><a id="tela" ></a>/3</h3>
     </div>
     
-    <button class="next_button" >Próximo</button>
+    <button class="next_button" onclick="sendtela()" >Próximo</button>
+    <script>
+      function sendtela() {
+        var xhr = new XMLHttpRequest();
+        console.log("salvando curso");
+        xhr.open("POST", 'http://127.0.0.1:5000/terminal/'+localStorage.getItem('id_user_ativo').toString()+'/curso/'+localStorage.getItem('id_curso_ativo').toString(), true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+        'tela': localStorage.getItem('tela'),
+        'exr': document.getElementById('code').value
+    }));
+    }
+    </script>
   </div> 
   <py-script src="{{url_for('static', filename='main2.py')}}" ouput="pytest-output" id="some">
   </py-script>

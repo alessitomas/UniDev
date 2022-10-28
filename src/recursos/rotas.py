@@ -215,13 +215,13 @@ class Terminal(Resource):
 
             if str(resposta.id_curso) == str(id_curso_ativo) and str(resposta.id_usuario) == str(id_user_ativo):
                 tela_a_fazer = resposta.ultimo_exr + 1
-                print("1")
+
                 if int(tela_a_fazer) > int(curso.numero_telas):
                     return {'titulo': 'Curso concluido'}
-                print("2")
+
                 for ex in exercicios:
                     if int(ex.tela) == int(tela_a_fazer) and int(ex.id_curso) == int(id_curso_ativo):
-                        print("teste2")
+
                         return ex.toDict() 
 
 
@@ -229,9 +229,17 @@ class Terminal(Resource):
         for ex in exercicios:
             print(ex.tela,ex.id_curso)
             if ex.tela == 1 and ex.id_curso == id_curso_ativo:
-                print("teste2")
+
                 return ex.toDict()
-   
+
+
+
+
+
+    def post(self,id_user_ativo,id_curso_ativo):
+        print("oi")
+        corpo = request.get_json( force=True )
+        print(corpo['tela'],corpo["exr"])
     #     exercicios = ExerciciosModel.search_all()
     #     matriculas = MatriculaModel.search_all()
     #     print("teste1")
