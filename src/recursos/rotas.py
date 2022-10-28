@@ -202,7 +202,7 @@ class Terminal(Resource):
     def get(self,id_user_ativo,id_curso_ativo):
         user = UsuarioModel.query.filter_by(id=id_user_ativo).first()
         curso = CursoModel.query.filter_by(id_curso=id_curso_ativo).first()
-        reposta = {'user':user.toDict(), 'curso':curso.toDict()}
+        
         
         print(user,curso)
         print(user.nome,curso.nome_curso)
