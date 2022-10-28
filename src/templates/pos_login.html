@@ -50,7 +50,16 @@
         padding-right: 1%;
         padding-left: 1%;">
                 <img src="{{url_for('static', filename='imagens/logo_python.png')}}" style="width: 120px;"/>
-                <span style="display: block;text-align: center; font-family: 'Source Code Pro', monospace; font-size: 25px;"><a href="" style="color: black; text-decoration: underline;">Python</a></span>
+                <span style="display: block;text-align: center; font-family: 'Source Code Pro', monospace; font-size: 25px;"><a onclick="salvacurso()" style="color: black; text-decoration: underline;">Python</a></span>
+                <script>
+                        function salvacurso() {
+                        localStorage.setItem('id_curso_ativo',1);
+                        window.location.href = "/code";
+                        
+                }
+                </script>
+        
+        
         </div>
 
         <div class="js_curso" style="vertical-align: top;

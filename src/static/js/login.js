@@ -1,34 +1,32 @@
 $(document).ready(function () {
-
     $("#form-login").submit(function (event) {
-      
       event.preventDefault();
-   
-  
       var settings = {
-        "url": "login/",
+        "url": "/login",
         "method": "POST",
         "timeout": 0,
         "headers": {
           "Content-Type": "application/json"
         },
         "data": JSON.stringify({
-
-          "username": $("#username").val(),
-          "senha": $("#senha").val()
+          "id_user": $("#id_user").val()
         }),
       };
-      
+      // get response if status == True redirect 
+
+
+
       $.ajax(settings).done(function (response) {
-        console.log(response);
-  
+        console.log(response.status);
+        if (response.status) {
 
-        $("#ul-resp").append("<li>username:" + response.username + "</li>")
-        $("#ul-resp").append("<li>senha:" + response.senha + "</li>")
+          localStorage.setItem('id_user_ativo',response.id_user);
+          window.location.href = "/cursos";
 
-  
+        }
       });
     });
   
     
   });
+

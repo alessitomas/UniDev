@@ -12,12 +12,14 @@ class CursoModel(db.Model):
     id_curso = db.Column(db.Integer, primary_key=True )
     nome_curso = db.Column(db.String(80), nullable = False)
     linguagem = db.Column(db.String(20), nullable = False)
+    numero_telas = db.Column(db.Integer)    
 
 
-    def __init__(self, id_curso, nome_curso, linguagem):
+    def __init__(self, id_curso, nome_curso, linguagem, numero_telas):
         self.id_curso = id_curso
         self.nome_curso = nome_curso
         self.linguagem = linguagem
+        self.numero_telas = numero_telas
 
     def save(self):
         db.session.add(self)
@@ -79,43 +81,6 @@ class UsuarioModel(db.Model):
         return f'{self.nome}'
 
 
-class MatriculaModel(db.Model):
-
-
-    EM_ABERTO = 0
-    CONCLUIDO = 1
-
-    inicio = db.Column(db.DateTime, nullable = False)
-    status= db.Column(db.Boolean, default=0)
-    fim= db.Column(db.DateTime)
-    id_matricula = db.Column(db.Integer, primary_key = True)
-    id_usuario = db.Column(db.Integer)
-    id_curso = db.Column(db.Integer)
-
-    def __init__(self, inicio, status, fim, id_matricula, id_usuario, id_curso):
-        self.inicio = inicio
-        self.status = status
-        self.fim = fim
-        self.id_matricula = id_matricula
-        self.id_curso = id_curso
-        self.id_usuario = id_usuario
-
-    def save(self):
-        db.session.add(self)
-        db.session.commit()
-
-    def delete(self):
-        db.session.delete(self)
-        db.session.commit()
-
-    @classmethod
-    def search_all(cls):
-        return cls.query.all()        
-
-    def toDict(self):
-        return {'inicio': self.inicio, 'status':self.status, 'fim':self.fim, 'id matricula':self.id_matricula}
-
-    
 
 class ExerciciosModel(db.Model):
 
@@ -126,15 +91,15 @@ class ExerciciosModel(db.Model):
     pytest = db.Column(db.String(4000))
     titulo = db.Column(db.String(80))
     enunciado = db.Column(db.String(4000), nullable = False)
-    gabarito = db.Column(db.String(4000), nullable = False)
+
     id_curso = db.Column(db.Integer)
-    def __init__(self, id_exercicio,tela, enunciado, gabarito, pytest, titulo, id_curso):
+    
+    def __init__(self, id_exercicio,tela, enunciado, pytest, titulo, id_curso):
         self.id_exercicio = id_exercicio
         self.tela = tela
         self.pytest = pytest
         self.titulo = titulo
         self.enunciado = enunciado
-        self.gabarito = gabarito
         self.id_curso = id_curso
 
     def save(self):
@@ -150,23 +115,23 @@ class ExerciciosModel(db.Model):
         return cls.query.all()        
 
     def toDict(self):
-        return {'id exercicio': self.id_exercicio, 'tela':self.tela, 'enunciado':self.enunciado, 'gabarito':self.gabarito, 'titulo': self.titulo, 'pytest':self.pytest}
+        return {'id exercicio': self.id_exercicio, 'tela':self.tela, 'enunciado':self.enunciado, 'titulo': self.titulo, 'pytest':self.pytest}
 
 class RespostasModel(db.Model):
 
-    resposta = db.Column(db.String(4000), nullable = False)
-    id_resposta = db.Column(db.Integer, primary_key = True)
+    id_resposta = db.Column(db.Integer, primary_key=True, autoincrement = True )
     id_curso = db.Column(db.Integer)
     id_usuario = db.Column(db.Integer)
     id_exercicio = db.Column(db.Integer)
+    resposta = db.Column(db.String(4000))
     tela = db.Column(db.Integer)
 
-    def __init__(self, resposta, id_resposta,id_curso,id_usuario,id_exercicio, tela):
-        self.resposta = resposta
-        self.id_resposta = id_resposta
+    def __init__(self,id_curso,id_usuario,id_exercicio,resposta,tela):
+
         self.id_curso = id_curso
         self.id_usuario = id_usuario
         self.id_exercicio = id_exercicio
+        self.resposta = resposta
         self.tela = tela
     
     def save(self):

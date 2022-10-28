@@ -9,6 +9,7 @@ import pytest
 def run_tests(e):
     print('iniciando teste!')
     code = document.getElementById('code')
+    print(code.value)
 
     with open('solution.py', 'w') as f:
         f.write(code.value)    
@@ -17,6 +18,7 @@ def run_tests(e):
     try:
         import solution
         importlib.reload(solution)
+
     except:
         return
     

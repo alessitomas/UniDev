@@ -25,9 +25,9 @@ app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 admin = Admin(app, name='unidev', template_mode='bootstrap3')
 admin.add_view(ModelView(CursoModel, db.session))
 admin.add_view(ModelView(UsuarioModel, db.session))
-admin.add_view(ModelView(MatriculaModel, db.session))
-admin.add_view(ModelView(ExerciciosModel, db.session))
 admin.add_view(ModelView(RespostasModel, db.session))
+admin.add_view(ModelView(ExerciciosModel, db.session))
+
 app.config['SECRET_KEY'] = "978FSFHASF8SUHFUAGF789SAGF9AS"
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{caminho_arq_db.resolve()}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -71,13 +71,18 @@ def cursos():
     return render_template('pos_login.html')
 
 
-@app.route('/log/')
-def log():
-    return render_template('login.html')
+@app.route('/logar')
+def logar():
+    id_user = request.args.get('id_user')
+    print(id_user)
+    return render_template('login.html',paramKey=id_user)
 
 @app.route('/code/')
 def code():
+    # id_curso = request.args.get('id_user')
+    # print(id_curso)
     return render_template('index.html')
+
 
 
 
@@ -88,13 +93,21 @@ def code():
 #     return render_template('index.html')
      
 api.add_resource(Curso, '/curso/<int:id_curso>')
-api.add_resource(Matricula, '/usuario/<int:id_usuario>/matricula/<int:id_matricula>')
+
 api.add_resource(Exercicio, '/curso/<int:id_curso>/exercicio/<int:id_exercicio>')
-api.add_resource(Resposta, '/curso/<int:id_curso>/resposta/<int:id_resposta>')
+
 api.add_resource(Usuario, '/usuario/')
-api.add_resource(Terminal, '/terminal/<int:id>')
-api.add_resource(Login, '/log/login/')
-# api.add_resource(Login, '/usuario/')
+api.add_resource(Terminal, '/terminal/<string:id_user_ativo>/curso/<string:id_curso_ativo>/')
+api.add_resource(Login, '/login/')
+
+@app.route('/terminal/<string:id_user_ativo>/curso/<string:id_curso_ativo>/exercicio/<string:tela>', methods=['POST'])
+def salvarexr(id_user_ativo, id_curso_ativo, tela):
+    corpo = request.get_json( force=True )
+    
+    resposta = RespostasModel(id_user_ativo=id_user_ativo, id_curso_ativo=id_curso_ativo, tela=tela, resposta=corpo['exr'])
+
+
+
 
 
 
