@@ -26,8 +26,13 @@ def run_tests(e):
             pytest.main()
 
     if "8 passed" in err.getvalue():
-        pyscript.write('pytest-output', 'passou')
+        pyscript.write('pytest-output', 'Parabéns! Você acertou o exercício!')
+        document.getElementById("next_button").style.color = "white"
+        document.getElementById("next_button").style.background = "#5bcf4f"
+        document.getElementById("next_button").style.pointerEvents = "all"
     else:
+        frase = err.getvalue().find('AssertionError: Algo deu errado.')
+        print(frase)
         pyscript.write('pytest-output', err.getvalue())
 
 
