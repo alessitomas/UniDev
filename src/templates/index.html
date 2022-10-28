@@ -7,7 +7,10 @@
   <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
   <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
   <script type="module" src="https://cdn.jsdelivr.net/gh/vanillawc/wc-monaco-editor@1/index.js"></script>
-  
+
+
+  {%set x=y%}
+
   <py-env>
     - pytest
     - pytest-reportlog
@@ -151,15 +154,22 @@
     <button class="next_button" onclick="sendtela()" >Próximo</button>
     <script>
       function sendtela() {
-        window.location.reload();
-        var xhr = new XMLHttpRequest();
-        console.log("salvando curso");
-        console.log('http://127.0.0.1:5000/terminal/'+localStorage.getItem('id_user_ativo').toString()+'/curso/'+localStorage.getItem('id_curso_ativo').toString()+ '/exercico/' +localStorage.getItem('tela').toString());
-        xhr.open("POST", 'http://127.0.0.1:5000/terminal/'+localStorage.getItem('id_user_ativo').toString()+'/curso/'+localStorage.getItem('id_curso_ativo').toString()+ '/exercicio/' +localStorage.getItem('tela').toString(), true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(JSON.stringify({
-        'exr': document.getElementById('code').value
-    }));
+        if (document.getElementById('code').value!=""){
+          window.location.reload();
+          var xhr = new XMLHttpRequest();
+          localStorage.setItem("primeira_vez", false);
+          console.log("aquiiiiiiiiii");
+          console.log(document.getElementById('code').value,"aquiiiiiiiiii");
+          xhr.open("POST", 'http://127.0.0.1:5000/terminal/'+localStorage.getItem('id_user_ativo').toString()+'/curso/'+localStorage.getItem('id_curso_ativo').toString()+ '/exercicio/' +(parseInt(localStorage.getItem('tela'))+1).toString(), true);
+          xhr.setRequestHeader('Content-Type', 'application/json');
+          xhr.send(JSON.stringify({
+          'exr': document.getElementById('code').value
+        }));
+        localStorage.setItem("tela", parseInt(localStorage.getItem('tela'))+1);
+      }
+        else{
+          console.log("aquiiiiiiiiii");
+        }
     }
     </script>
   </div> 

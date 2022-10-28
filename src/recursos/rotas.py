@@ -240,6 +240,7 @@ class Terminal(Resource):
     def post(self,id_user_ativo,id_curso_ativo):
         corpo = request.get_json( force=True )
         print(corpo['tela'],corpo["exr"])
+        print(id_user_ativo,corpo['tela'])
         exercicio_especifico = ExerciciosModel.query.filter_by(id_curso=id_curso_ativo,tela=corpo['tela']).first()
         
         
