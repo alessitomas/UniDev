@@ -25,7 +25,7 @@ app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 admin = Admin(app, name='unidev', template_mode='bootstrap3')
 admin.add_view(ModelView(CursoModel, db.session))
 admin.add_view(ModelView(UsuarioModel, db.session))
-
+admin.add_view(ModelView(RespostasModel, db.session))
 admin.add_view(ModelView(ExerciciosModel, db.session))
 
 app.config['SECRET_KEY'] = "978FSFHASF8SUHFUAGF789SAGF9AS"

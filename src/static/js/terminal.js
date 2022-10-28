@@ -16,9 +16,6 @@ fetch('http://127.0.0.1:5000/terminal/'+localStorage.getItem('id_user_ativo').to
     document.getElementById("titulo").innerHTML = corpo.titulo
     document.getElementById("enunciado").innerHTML = corpo.enunciado
     document.getElementById("tela").innerHTML = corpo.tela
-
-
-
 })
 
 

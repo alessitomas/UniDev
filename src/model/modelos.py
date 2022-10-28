@@ -115,7 +115,7 @@ class ExerciciosModel(db.Model):
         return cls.query.all()        
 
     def toDict(self):
-        return {'id exercicio': self.id_exercicio, 'tela':self.tela, 'enunciado':self.enunciado, 'gabarito':self.gabarito, 'titulo': self.titulo, 'pytest':self.pytest}
+        return {'id exercicio': self.id_exercicio, 'tela':self.tela, 'enunciado':self.enunciado, 'titulo': self.titulo, 'pytest':self.pytest}
 
 class RespostasModel(db.Model):
 

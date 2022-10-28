@@ -202,11 +202,35 @@ class Terminal(Resource):
     def get(self,id_user_ativo,id_curso_ativo):
         user = UsuarioModel.query.filter_by(id=id_user_ativo).first()
         curso = CursoModel.query.filter_by(id_curso=id_curso_ativo).first()
-        
-        
-        print(user,curso)
-        print(user.nome,curso.nome_curso)
 
+
+        # print(user.nome,curso.nome_curso)
+
+
+        respostas = RespostasModel.search_all()
+
+        exercicios = ExerciciosModel.search_all()
+
+        for resposta in respostas:
+
+            if str(resposta.id_curso) == str(id_curso_ativo) and str(resposta.id_usuario) == str(id_user_ativo):
+                tela_a_fazer = resposta.ultimo_exr + 1
+                print("1")
+                if int(tela_a_fazer) > int(curso.numero_telas):
+                    return {'titulo': 'Curso concluido'}
+                print("2")
+                for ex in exercicios:
+                    if int(ex.tela) == int(tela_a_fazer) and int(ex.id_curso) == int(id_curso_ativo):
+                        print("teste2")
+                        return ex.toDict() 
+
+
+        
+        for ex in exercicios:
+            print(ex.tela,ex.id_curso)
+            if ex.tela == 1 and ex.id_curso == id_curso_ativo:
+                print("teste2")
+                return ex.toDict()
    
     #     exercicios = ExerciciosModel.search_all()
     #     matriculas = MatriculaModel.search_all()
