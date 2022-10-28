@@ -99,7 +99,13 @@ api.add_resource(Exercicio, '/curso/<int:id_curso>/exercicio/<int:id_exercicio>'
 api.add_resource(Usuario, '/usuario/')
 api.add_resource(Terminal, '/terminal/<string:id_user_ativo>/curso/<string:id_curso_ativo>/')
 api.add_resource(Login, '/login/')
-# api.add_resource(Login, '/usuario/')
+
+@app.route('/terminal/<string:id_user_ativo>/curso/<string:id_curso_ativo>/exercicio/<string:tela>', methods=['POST'])
+def salvarexr(id_user_ativo, id_curso_ativo, tela):
+    corpo = request.get_json( force=True )
+    print(corpo["exr"])
+
+
 
 
 
