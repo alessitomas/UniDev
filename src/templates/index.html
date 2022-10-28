@@ -153,10 +153,10 @@
       function sendtela() {
         var xhr = new XMLHttpRequest();
         console.log("salvando curso");
-        xhr.open("POST", 'http://127.0.0.1:5000/terminal/'+localStorage.getItem('id_user_ativo').toString()+'/curso/'+localStorage.getItem('id_curso_ativo').toString(), true);
+        console.log('http://127.0.0.1:5000/terminal/'+localStorage.getItem('id_user_ativo').toString()+'/curso/'+localStorage.getItem('id_curso_ativo').toString()+ '/exercico/' +localStorage.getItem('tela').toString());
+        xhr.open("POST", 'http://127.0.0.1:5000/terminal/'+localStorage.getItem('id_user_ativo').toString()+'/curso/'+localStorage.getItem('id_curso_ativo').toString()+ '/exercicio/' +localStorage.getItem('tela').toString(), true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify({
-        'tela': localStorage.getItem('tela'),
         'exr': document.getElementById('code').value
     }));
     }

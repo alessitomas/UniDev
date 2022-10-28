@@ -237,9 +237,18 @@ class Terminal(Resource):
 
 
     def post(self,id_user_ativo,id_curso_ativo):
-        print("oi")
         corpo = request.get_json( force=True )
         print(corpo['tela'],corpo["exr"])
+        exercicio_especifico = ExerciciosModel.query.filter_by(id_curso=id_curso_ativo,tela=corpo['tela']).first()
+        
+        
+        resposta = RespostasModel(id_curso=id_curso_ativo, id_usuario=id_user_ativo,tela =corpo['tela'],ultimo_exr=exercicio_especifico) 
+
+
+
+
+
+
     #     exercicios = ExerciciosModel.search_all()
     #     matriculas = MatriculaModel.search_all()
     #     print("teste1")
