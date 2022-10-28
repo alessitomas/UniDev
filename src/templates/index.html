@@ -145,7 +145,16 @@
 
   </div>
   <div class="rodape">
-    <button class="next_button">Voltar</button>
+    <button onclick="voltar()" class="next_button">Voltar</button>
+    <script>
+      function voltar() {
+        console.log("diminuiii")
+        localStorage.setItem("primeira_vez", false);
+        localStorage.setItem("tela", parseInt(localStorage.getItem('tela'))-1);
+        window.location.reload()
+      }
+    </script>
+    
     <div class="progresso">
       <h2>PROGRESSO</h2>
         <h3><a id="tela" ></a>/3</h3>
@@ -160,7 +169,7 @@
           localStorage.setItem("primeira_vez", false);
           console.log("aquiiiiiiiiii");
           console.log(document.getElementById('code').value,"aquiiiiiiiiii");
-          xhr.open("POST", 'http://127.0.0.1:5000/terminal/'+localStorage.getItem('id_user_ativo').toString()+'/curso/'+localStorage.getItem('id_curso_ativo').toString()+ '/exercicio/' +(parseInt(localStorage.getItem('tela'))+1).toString(), true);
+          xhr.open("POST", 'http://127.0.0.1:5000/terminal/'+localStorage.getItem('id_user_ativo').toString()+'/curso/'+localStorage.getItem('id_curso_ativo').toString()+ '/exercicio/' +localStorage.getItem('tela').toString(), true);
           xhr.setRequestHeader('Content-Type', 'application/json');
           xhr.send(JSON.stringify({
           'exr': document.getElementById('code').value
