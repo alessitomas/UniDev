@@ -123,7 +123,8 @@ class RespostasModel(db.Model):
     id_curso = db.Column(db.Integer)
     id_usuario = db.Column(db.Integer)
     id_exercicio = db.Column(db.Integer)
-    ultimo_exr = db.Column(db.Integer)
+    resposta = db.Column(db.String(4000))
+    tela = db.Column(db.Integer)
 
     def __init__(self,  id_resposta,id_curso,id_usuario,id_exercicio, ultimo_exr):
 
