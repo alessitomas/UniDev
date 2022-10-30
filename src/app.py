@@ -82,6 +82,9 @@ def code():
     # print(id_curso)
     return render_template('index.html')
 
+@app.route('/paginafinal/')
+def final():
+    return render_template('curso_concluido.html')
 
 
 
@@ -115,6 +118,18 @@ def salvarexr(id_user_ativo, id_curso_ativo, tela):
     return exr.toDict(),200
 
 
+@app.route('/mudarpg/<int:id_user_ativo>/curso/<int:id_curso_ativo>/exercicio/<int:tela>', methods=['get'])
+def mudapg(id_user_ativo, id_curso_ativo, tela):
+    curso = CursoModel.query.filter_by(id_curso=id_curso_ativo).first()
+    telas = curso.numero_telas
+    if tela <= telas:
+        ex = ExerciciosModel.query.filter_by(id_curso=id_curso_ativo, tela=tela).first()
+        if ex:
+            return ex.toDict(),200
+
+        return {'mensagem': "exercício não encontrado"}, 404
+    else:
+        return {'curso_finalizado': True}
 
 if __name__ == '__main__':
     db.init_app(app)

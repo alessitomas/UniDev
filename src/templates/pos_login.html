@@ -54,8 +54,11 @@
                 <script>
                         function salvacurso() {
                         localStorage.setItem('id_curso_ativo',1);
-                        window.location.href = "/code";
                         
+                        localStorage.setItem('telas_curso_ativo',5);
+
+                        window.location.href = "/code";
+                        localStorage.setItem("primeira_vez", true);
                 }
                 </script>
         
