@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    console.log("login.js loaded");
     $("#form-login").submit(function (event) {
       event.preventDefault();
       var settings = {
