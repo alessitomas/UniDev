@@ -7,7 +7,142 @@
   <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
   <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
   <script type="module" src="https://cdn.jsdelivr.net/gh/vanillawc/wc-monaco-editor@1/index.js"></script>
+  
 
+
+  
+  
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'css/terminal.css') }}">
+  <link rel="icon" href="{{url_for ('static', filename = 'imagens/logo_pagina.png')}}">
+
+  
+
+  <style>
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+
+    #app {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #app h1 {
+      padding: 15px;
+      font-size: x-large;
+      display: flex;
+      justify-content: center;
+      background-color: #3f51b5;
+      font-family: 'Poppins', sans-serif;
+      color: #f8f8f8;
+    }
+
+    #app .enunciado {
+      padding: 15px;
+      line-height: 2;
+    }
+
+    #code {
+      height: 10rem;
+      border: 1px solid;
+      border-radius: 3px;
+      flex: 1;
+    }
+
+    #run-tests {
+      background-color: #5bcf4f;
+      width: 10rem;
+      align-self: end;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border-radius: 7px;
+    }
+
+    #run-tests:hover {
+      background-color: #74df5f;
+      transition: 300ms;
+    }
+
+    #pytest-output {
+      overflow-y: scroll;
+      display: flex;
+      font-size: 10px;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .esquerdo {
+      float:left;
+      display: flex;
+      flex-direction: column;
+      width: 33%;
+      overflow-y: scroll;
+    }
+    .meio {
+      display: flex;
+      flex-direction: column;
+      width: 33%;
+    }
+    .direito {
+      float:right;
+      display: flex;
+      flex-direction: column;
+      width: 33%;
+    }
+
+    #body_div{
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 94%;
+    }
+
+    #some{
+      height: 1%;
+    }
+
+    .rodape{
+      background-color: #3f51b5;
+      height: 6%;
+      display: flex;
+      flex-direction:row-reverse;
+      display: flex;
+      flex-direction: row;
+      justify-content:space-between;
+    }
+    #next_button{
+      margin-right: 20px;
+      margin-left: 20px;
+      color: #f8f8f8;
+      font-family: 'Poppins',sans-serif;
+      border-radius: 15px;
+      width: 10rem;
+      align-self: end;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      pointer-events: none;
+    }
+
+    .next_button:hover{
+      background-color: #5c6bc0;
+      transition: 300ms;
+    }
+    .progresso{
+      display: flex;
+      width: 200%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size:small;
+      color: #c4d2ff;
+      font-family: 'Poppins',sans-serif;
+    }
+  </style>
 
   {%set x=y%}
 
