@@ -300,6 +300,7 @@
     <button class="next_button" onclick="sendtela()" >Próximo</button>
     <script>
       function sendtela() {
+
         if (document.getElementById('code').value!="" && parseInt(localStorage.getItem('tela'))<= parseInt(localStorage.getItem('telas_curso_ativo')) ){
           window.location.reload();
           var xhr = new XMLHttpRequest();
@@ -315,6 +316,7 @@
           console.log("aquiiiiiiiiii");
             }
       }
+
     </script>
   </div> 
   <py-script src="{{url_for('static', filename='main2.py')}}" ouput="pytest-output" id="some">
