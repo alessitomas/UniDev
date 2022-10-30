@@ -204,7 +204,7 @@ class Terminal(Resource):
         curso = CursoModel.query.filter_by(id_curso=id_curso_ativo).first()
 
 
-        # print(user.nome,curso.nome_curso)
+
 
 
         respostas = RespostasModel.search_all()
@@ -215,31 +215,30 @@ class Terminal(Resource):
             
             if str(resposta.id_curso) == str(id_curso_ativo) and str(resposta.id_usuario) == str(id_user_ativo):
                 telas.append(resposta.tela)
-
+                print("primeiro if")
 
         if len(telas) != 0:
             tela_a_fazer = max(telas) + 1
             if int(tela_a_fazer) > int(curso.numero_telas):
-                return {'titulo': 'Curso concluido'}
-            print("entrou no if")
+                return {'curso_finalizado': True}
 
             for ex in exercicios:
                 if int(ex.tela) == int(tela_a_fazer) and int(ex.id_curso) == int(id_curso_ativo):
-                    print("teste2")
+                    print("terceiro if")                    
                     return ex.toDict() 
 
         else:
-            print("entrou no else")
+            print("quarto if")
             for ex in exercicios:
                 print(ex.tela,ex.id_curso)
                 print(id_curso_ativo)
                 if int(ex.tela) == 1 and int(ex.id_curso) == int(id_curso_ativo):
-                    print("teste2")
+                    print("quinto if")
                     return ex.toDict()
 
     def post(self,id_user_ativo,id_curso_ativo):
         corpo = request.get_json( force=True )
-        print(corpo['tela'],corpo["exr"])
+
         exercicio_especifico = ExerciciosModel.query.filter_by(id_curso=id_curso_ativo,tela=corpo['tela']).first()
         
         

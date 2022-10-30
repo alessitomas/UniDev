@@ -14,6 +14,7 @@ import solution
         (5, pi*5**2),
         (6, pi*6**2),
         (7, pi*7**2),
+        (8, pi*8**2)
     ]])
 def test_vários_raios(raio, area):
     dica = ''
