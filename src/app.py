@@ -74,8 +74,7 @@ def cursos():
 @app.route('/logar')
 def logar():
     id_user = request.args.get('id_user')
-    print(id_user)
-    return render_template('login.html',paramKey=id_user)
+    return render_template('login.html')
 
 @app.route('/code/')
 def code():

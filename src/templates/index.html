@@ -13,14 +13,6 @@
 
   <title> Exercício - UniDev</title>
   
-  <py-env>
-    - pytest
-    - pytest-reportlog
-    - paths:
-      - ../static/main2.py
-      - ../static/solution.py
-      - ../static/test_1.py
-  </py-env>
   <style>
 
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
@@ -200,6 +192,7 @@
         'exr': document.getElementById('code').value
     }));
     }
+    
     </script>
   </div> 
   <py-script src="{{url_for('static', filename='main2.py')}}" ouput="pytest-output" id="some">
