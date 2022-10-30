@@ -46,3 +46,30 @@ else {
 
 }
 
+function sendtela() {
+    if (document.getElementById('code').value!="" && parseInt(localStorage.getItem('tela'))<= parseInt(localStorage.getItem('telas_curso_ativo')) ){
+      window.location.reload();
+      var xhr = new XMLHttpRequest();
+      localStorage.setItem("primeira_vez", false);
+      xhr.open("POST", 'http://127.0.0.1:5000/terminal/'+localStorage.getItem('id_user_ativo').toString()+'/curso/'+localStorage.getItem('id_curso_ativo').toString()+ '/exercicio/' +localStorage.getItem('tela').toString(), true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(JSON.stringify({
+      'exr': document.getElementById('code').value
+    }));
+    localStorage.setItem("tela", parseInt(localStorage.getItem('tela'))+1);
+        }
+    else{
+      console.log("aquiiiiiiiiii");
+        }
+  }
+
+
+function voltar() {
+    localStorage.setItem("primeira_vez", false);
+    if (parseInt(localStorage.getItem('tela'))>1){
+      localStorage.setItem("tela", parseInt(localStorage.getItem('tela'))-1);
+    }
+
+    window.location.reload()
+  }
+

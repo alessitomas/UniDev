@@ -21,14 +21,10 @@
         <div class="nav-wrapper indigo">
           <a href="#" class="brand-logo"><img src="{{url_for ('static', filename='imagens/logo_pagina.png')}}" style="width: 60px;"></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="collapsible.html" style="font-family: 'Poppins', sans-serif;">Logout</a></li>
+            <li><a href="/" style="font-family: 'Poppins', sans-serif;">Logout</a></li>
           </ul>
         </div>
     </nav>
-
-    <ul class="sidenav" id="mobile-links">
-        <li><a href="collapsible.html" style="font-family: 'Poppins', sans-serif;">Logout</a></li>
-    </ul>
 
     <h2 style="display: flex; justify-content: center; margin-top: 5%; font-family: 'Poppins', sans-serif;"> Selecione o curso que deseja acessar </h2>
     
@@ -50,7 +46,7 @@
         padding-right: 1%;
         padding-left: 1%;">
                 <img src="{{url_for('static', filename='imagens/logo_python.png')}}" style="width: 120px;"/>
-                <span style="display: block;text-align: center; font-family: 'Source Code Pro', monospace; font-size: 25px;"><a onclick="salvacurso()" style="color: black; text-decoration: underline;">Python</a></span>
+                <span style="display: block;text-align: center; font-family: 'Source Code Pro', monospace; font-size: 25px;"><a onclick="salvacurso()" style="color: black; text-decoration: underline; cursor: pointer;">Python</a></span>
                 <script>
                         function salvacurso() {
                         localStorage.setItem('id_curso_ativo',1);
@@ -81,7 +77,7 @@
         padding-bottom: 2%;
         padding-right: 1%;
         padding-left: 1%;" >
-                <img src="{{url_for('static', filename='imagens/logo_js.png')}}" style="width: 120px;"/>
+                <img src="{{url_for('static', filename='imagens/logo_js.png')}}" style="width: 120px; filter: saturate(0);"/>
                 <span class="caption" style="display: block; text-align: center; font-family: 'Source Code Pro', monospace; font-size: 25px; margin-top: 10%;"> <a href="" style="color: black; text-decoration: underline;">JavaScript</a> </span>
                 <span class="status" style="display: block;text-align: center; font-family: 'Source Code Pro', monospace; font-size: 25px; color: rgb(219, 54, 54);"> (em breve) </span>
         </div>
@@ -102,7 +98,7 @@
         padding-bottom: 2%;
         padding-right: 1%;
         padding-left: 1%;">
-                <img src="{{url_for('static', filename='imagens/logo_html.png')}}" style="width: 120px;"/>
+                <img src="{{url_for('static', filename='imagens/logo_html.png')}}" style="width: 120px; filter: saturate(0);"/>
                 <span class="caption" style="display: block;text-align: center; font-family: 'Source Code Pro', monospace; font-size: 25px; margin-top: 10%;" > <a href="" style="color: black; text-decoration: underline;">HTML</a> </span>
                 <span class="status" style="display: block;text-align: center; font-family: 'Source Code Pro', monospace; font-size: 25px; color: rgb(219, 54, 54);"> (em breve) </span>
         </div>
@@ -124,7 +120,7 @@
         padding-bottom: 2%;
         padding-right: 1%;
         padding-left: 1%;">
-                <img src="{{url_for('static', filename='imagens/logo_css.png')}}" style="width: 120px;"/>
+                <img src="{{url_for('static', filename='imagens/logo_css.png')}}" style="width: 120px; filter: saturate(0);"/>
                 <span class="caption" style="display: block;text-align: center; font-family: 'Source Code Pro', monospace; font-size: 25px; margin-top: 10%;"> <a href="" style="color: black; text-decoration: underline;">CSS</a> </span>
                 <span class="status" style="display: block;text-align: center; font-family: 'Source Code Pro', monospace; font-size: 25px; color: rgb(219, 54, 54);"> (em breve) </span>
         </div>
