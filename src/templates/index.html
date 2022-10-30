@@ -150,7 +150,10 @@
       function voltar() {
         console.log("diminuiii")
         localStorage.setItem("primeira_vez", false);
-        localStorage.setItem("tela", parseInt(localStorage.getItem('tela'))-1);
+        if (parseInt(localStorage.getItem('tela'))>1){
+          localStorage.setItem("tela", parseInt(localStorage.getItem('tela'))-1);
+        }
+
         window.location.reload()
       }
     </script>
@@ -169,17 +172,18 @@
           localStorage.setItem("primeira_vez", false);
           console.log("aquiiiiiiiiii");
           console.log(document.getElementById('code').value,"aquiiiiiiiiii");
+          console.log("testedefogo");
           xhr.open("POST", 'http://127.0.0.1:5000/terminal/'+localStorage.getItem('id_user_ativo').toString()+'/curso/'+localStorage.getItem('id_curso_ativo').toString()+ '/exercicio/' +localStorage.getItem('tela').toString(), true);
           xhr.setRequestHeader('Content-Type', 'application/json');
           xhr.send(JSON.stringify({
           'exr': document.getElementById('code').value
         }));
         localStorage.setItem("tela", parseInt(localStorage.getItem('tela'))+1);
-      }
+            }
         else{
           console.log("aquiiiiiiiiii");
-        }
-    }
+            }
+      }
     </script>
   </div> 
   <py-script src="{{url_for('static', filename='main2.py')}}" ouput="pytest-output" id="some">
