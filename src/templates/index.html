@@ -5,21 +5,15 @@
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <script type = "text/javascript" src = "{{ url_for('static', filename = 'js/terminal.js') }}" ></script>	
   <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'css/terminal.css') }}">
+  <link rel="icon" href="{{url_for ('static', filename = 'imagens/logo_pagina.png')}}">
   <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
   <script type="module" src="https://cdn.jsdelivr.net/gh/vanillawc/wc-monaco-editor@1/index.js"></script>
 
-
-  {%set x=y%}
-
-  <py-env>
-    - pytest
-    - pytest-reportlog
-    - paths:
-      - ../static/main2.py
-      - ../static/solution.py
-      - ../static/test_1.py
-  </py-env>
   <style>
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
 
     #app {
       display: flex;
@@ -33,7 +27,11 @@
     #app h1 {
       padding: 15px;
       font-size: x-large;
-      background-color: #c4d2ff;
+      display: flex;
+      justify-content: center;
+      background-color: #3f51b5;
+      font-family: 'Poppins', sans-serif;
+      color: #f8f8f8;
     }
 
     #app .enunciado {
@@ -49,17 +47,28 @@
     }
 
     #run-tests {
-      background-color: #b5ddad;
+      background-color: #5bcf4f;
       width: 10rem;
       align-self: end;
       margin-top: 10px;
       margin-bottom: 10px;
+      border-radius: 7px;
+    }
+
+    #run-tests:hover {
+      background-color: #74df5f;
+      transition: 300ms;
     }
 
     #pytest-output {
-      flex: 1;
       overflow-y: scroll;
+      display: flex;
+      font-size: 10px;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
     }
+    
     .esquerdo {
       float:left;
       display: flex;
@@ -91,7 +100,7 @@
     }
 
     .rodape{
-      background-color: black;
+      background-color: #3f51b5;
       height: 6%;
       display: flex;
       flex-direction:row-reverse;
@@ -99,23 +108,32 @@
       flex-direction: row;
       justify-content:space-between;
     }
-    .next_button{
+    #next_button{
       margin-right: 20px;
       margin-left: 20px;
-
-      background-color: #b5ddad;
+      color: #f8f8f8;
+      font-family: 'Poppins',sans-serif;
+      border-radius: 15px;
       width: 10rem;
       align-self: end;
       margin-top: 10px;
       margin-bottom: 10px;
+      pointer-events: none;
+    }
+
+    .next_button:hover{
+      background-color: #5c6bc0;
+      transition: 300ms;
     }
     .progresso{
       display: flex;
+      width: 200%;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       font-size:small;
       color: #c4d2ff;
+      font-family: 'Poppins',sans-serif;
     }
   </style>
 </head>
@@ -124,7 +142,7 @@
   <section id="app">
     <div class = "esquerdo">
 
-      <h1> Exercício: <p id="titulo"></p></h1>
+      <h1> Exercício<p id="titulo"></p></h1>
       <div class="enunciado">
         <p id="enunciado"></p>
 
@@ -132,14 +150,21 @@
     </div>
     <div class = "meio">
     <wc-monaco-editor id="code" language="python"></wc-monaco-editor>
-    
-    <button id="run-tests">Rodar Testes</button>
+    <button id="run-tests" onclick="JSConfetti">Rodar Testes</button>
     </div>
+
+  <script>
+    const jsConfetti = new JSConfetti();
+    function confettiFY (){
+      jsConfetti.addConfetti();
+    }
+    document.querySelector('#run-tests').addEventListener('click', confettiFY);
+  </script>
     <div class="direito">
       <pre id="pytest-output">
       </pre>
       <py-script id = "pytest-term"> 
-      </py-script>|
+      </py-script>
     </div>
   </section>
 
@@ -162,7 +187,7 @@
         <h3><a id="tela" ></a>/3</h3>
     </div>
     
-    <button class="next_button" onclick="sendtela()" >Próximo</button>
+    <button id="next_button" onclick="sendtela()" >Próximo</button>
     <script>
       function sendtela() {
         if (document.getElementById('code').value!="" && parseInt(localStorage.getItem('tela'))<= parseInt(localStorage.getItem('telas_curso_ativo')) ){
@@ -184,6 +209,8 @@
   </div> 
   <py-script src="{{url_for('static', filename='main2.py')}}" ouput="pytest-output" id="some">
   </py-script>
+
+  
 
 </body>
 </html>
