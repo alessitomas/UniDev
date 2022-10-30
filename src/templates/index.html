@@ -148,7 +148,6 @@
     <button onclick="voltar()" class="next_button">Voltar</button>
     <script>
       function voltar() {
-        console.log("diminuiii")
         localStorage.setItem("primeira_vez", false);
         if (parseInt(localStorage.getItem('tela'))>1){
           localStorage.setItem("tela", parseInt(localStorage.getItem('tela'))-1);
@@ -166,13 +165,10 @@
     <button class="next_button" onclick="sendtela()" >Próximo</button>
     <script>
       function sendtela() {
-        if (document.getElementById('code').value!=""){
+        if (document.getElementById('code').value!="" && parseInt(localStorage.getItem('tela'))<= parseInt(localStorage.getItem('telas_curso_ativo')) ){
           window.location.reload();
           var xhr = new XMLHttpRequest();
           localStorage.setItem("primeira_vez", false);
-          console.log("aquiiiiiiiiii");
-          console.log(document.getElementById('code').value,"aquiiiiiiiiii");
-          console.log("testedefogo");
           xhr.open("POST", 'http://127.0.0.1:5000/terminal/'+localStorage.getItem('id_user_ativo').toString()+'/curso/'+localStorage.getItem('id_curso_ativo').toString()+ '/exercicio/' +localStorage.getItem('tela').toString(), true);
           xhr.setRequestHeader('Content-Type', 'application/json');
           xhr.send(JSON.stringify({
