@@ -12,6 +12,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from recursos.rotas import *
 from model.sql_alchemy_para_db import db
 import pickle
+from flask_cors import CORS, cross_origin
+
 
 # Resistente a sistema operacional
 FILE = Path(__file__).resolve()
@@ -22,12 +24,16 @@ caminho_arq_db = src_folder / rel_arquivo_db
 
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 admin = Admin(app, name='unidev', template_mode='bootstrap3')
 admin.add_view(ModelView(CursoModel, db.session))
 admin.add_view(ModelView(UsuarioModel, db.session))
 admin.add_view(ModelView(RespostasModel, db.session))
 admin.add_view(ModelView(ExerciciosModel, db.session))
+
 
 app.config['SECRET_KEY'] = "978FSFHASF8SUHFUAGF789SAGF9AS"
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{caminho_arq_db.resolve()}'
