@@ -18,6 +18,7 @@ if (localStorage.getItem('primeira_vez').toString() == "true") {
             window.location.href = "https://insper-unidev.herokuapp.com/paginafinal/"
             }
         else{
+            console.log("aquiiiiiiiiii sera?")
             localStorage.setItem('tela', corpo.tela)
             document.getElementById("titulo").innerHTML = corpo.titulo
             document.getElementById("enunciado").innerHTML = corpo.enunciado
@@ -36,6 +37,7 @@ else {
             window.location.href = "https://insper-unidev.herokuapp.com/paginafinal/"
             }
         else{
+            console.log("aquiiiiiiiiii foi?")
             localStorage.setItem('tela', corpo.tela)
             document.getElementById("titulo").innerHTML = corpo.titulo
             document.getElementById("enunciado").innerHTML = corpo.enunciado
@@ -47,6 +49,7 @@ else {
 }
 
 function sendtela() {
+    console.log("aquiiiiiiiiii vaiii")
     if (document.getElementById('code').value!="" && parseInt(localStorage.getItem('tela'))<= parseInt(localStorage.getItem('telas_curso_ativo')) ){
       window.location.reload();
       var xhr = new XMLHttpRequest();
@@ -55,7 +58,9 @@ function sendtela() {
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.send(JSON.stringify({
       'exr': document.getElementById('code').value
+      
     }));
+    console.log('pfr')
     localStorage.setItem("tela", parseInt(localStorage.getItem('tela'))+1);
         }
     else{
