@@ -22,6 +22,8 @@ $(document).ready(function () {
       if (response.status) {
 
         localStorage.setItem('id_user_ativo',response.id_user);
+        console.log('passou aq')
+        console.log(localStorage.getItem('id_user_ativo'))
         window.location.href = "/cursos";
 
       }
