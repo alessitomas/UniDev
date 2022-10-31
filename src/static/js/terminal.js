@@ -10,7 +10,7 @@
 if (localStorage.getItem('primeira_vez').toString() == "true") {
   
 
-    fetch('https://insper-unidev.herokuapp.com/terminal/'+localStorage.getItem('id_user_ativo').toString()+'/curso/'+localStorage.getItem('id_curso_ativo').toString()).then(r =>{
+    fetch('https://insper-unidev.herokuapp.com/terminal/'+'1'+'/curso/'+localStorage.getItem('id_curso_ativo').toString()).then(r =>{
         return r.json()
     }) 
     .then(corpo=>{
@@ -29,7 +29,7 @@ if (localStorage.getItem('primeira_vez').toString() == "true") {
 }
 else {
 
-    fetch('https://insper-unidev.herokuapp.com/mudarpg/'+localStorage.getItem('id_user_ativo').toString()+'/curso/'+localStorage.getItem('id_curso_ativo').toString()+ '/exercicio/' +localStorage.getItem('tela').toString()).then(r =>{
+    fetch('https://insper-unidev.herokuapp.com/mudarpg/'+'1'+'/curso/'+localStorage.getItem('id_curso_ativo').toString()+ '/exercicio/' +localStorage.getItem('tela').toString()).then(r =>{
         return r.json()
     }) 
     .then(corpo=>{
@@ -54,7 +54,7 @@ function sendtela() {
       window.location.reload();
       var xhr = new XMLHttpRequest();
       localStorage.setItem("primeira_vez", false);
-      xhr.open("POST", 'https://insper-unidev.herokuapp.com/terminal/'+localStorage.getItem('id_user_ativo').toString()+'/curso/'+localStorage.getItem('id_curso_ativo').toString()+ '/exercicio/' +localStorage.getItem('tela').toString(), true);
+      xhr.open("POST", 'https://insper-unidev.herokuapp.com/terminal/'+'1'+'/curso/'+localStorage.getItem('id_curso_ativo').toString()+ '/exercicio/' +localStorage.getItem('tela').toString(), true);
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.send(JSON.stringify({
       'exr': document.getElementById('code').value

@@ -14,7 +14,7 @@ $(document).ready(function () {
       }),
     };
     // get response if status == True redirect 
-
+    
 
 
     $.ajax(settings).done(function (response) {
