@@ -11,6 +11,7 @@ from flask_login import *
 from werkzeug.security import generate_password_hash, check_password_hash
 from recursos.rotas import *
 from model.sql_alchemy_para_db import db
+import pickle
 
 # Resistente a sistema operacional
 FILE = Path(__file__).resolve()
