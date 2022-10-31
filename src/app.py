@@ -42,8 +42,6 @@ api = Api(app)
 import os
 
 
-#login_manager = LoginManager()
-#login_manager.init_app(app)
 
 
 @app.before_first_request
@@ -73,8 +71,7 @@ def logar():
 
 @app.route('/code/')
 def code():
-    # id_curso = request.args.get('id_user')
-    # print(id_curso)
+
     return render_template('index.html')
 
 @app.route('/paginafinal/')
@@ -84,18 +81,9 @@ def final():
 
 
 
-# @app.route('/<int:id_exercicio>/<int:id_usuario>')
-# def curso(id_exercicio, id_usuario):
-#     curso = ExerciciosModel.query.filter_by(id_exercicio=id_exercicio)
-#     return render_template('index.html')
-     
-api.add_resource(Curso, '/curso/<int:id_curso>')
 
-api.add_resource(Exercicio, '/curso/<int:id_curso>/exercicio/<int:id_exercicio>')
-
-api.add_resource(Usuario, '/usuario/')
 api.add_resource(Terminal, '/terminal/<string:id_user_ativo>/curso/<string:id_curso_ativo>/')
-api.add_resource(Login, '/login/')
+
 
 
 
