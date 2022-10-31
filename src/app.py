@@ -83,7 +83,7 @@ def final():
 
 
 api.add_resource(Terminal, '/terminal/<string:id_user_ativo>/curso/<string:id_curso_ativo>/')
-
+api.add_resource(Login, '/login/')
 
 
 

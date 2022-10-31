@@ -88,3 +88,22 @@ class Terminal(Resource):
                     return ex.toDict()
 
 
+class Login(Resource):
+    def get(self):
+        pass
+
+    def post(self):
+
+        corpo =request.get_json(force=True)
+        user = UsuarioModel.query.filter_by(id=corpo['id_user']).first()
+        if user:
+            return {'status':True,'id_user':corpo['id_user']}, 200
+        else:
+
+            return {'status':False}, 404
+
+    def put(self):
+        pass
+
+    def delete(self):
+        pass
