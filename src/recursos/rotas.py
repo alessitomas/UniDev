@@ -87,6 +87,16 @@ class Terminal(Resource):
                 if int(ex.tela) == 1 and int(ex.id_curso) == int(id_curso_ativo):
                     return ex.toDict()
 
+def post(self,id_user_ativo,id_curso_ativo):
+        corpo = request.get_json( force=True )
+
+        exercicio_especifico = ExerciciosModel.query.filter_by(id_curso=id_curso_ativo,tela=corpo['tela']).first()
+        
+        
+        resposta = RespostasModel(id_curso=id_curso_ativo, id_usuario=id_user_ativo,tela =corpo['tela'],ultimo_exr=exercicio_especifico)
+
+
+
 
 class Login(Resource):
     def get(self):
