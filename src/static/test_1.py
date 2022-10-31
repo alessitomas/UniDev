@@ -16,9 +16,9 @@ import solution
         (7, 5040),
         (8, 40320)
     ]])
-def test_vários_raios(n, fatorial):
+def test_vários_raios(raio, area):
     dica = ''
-    saida = solution.calcula_fatorial(n)
-    if type(saida) != type(fatorial):
-        dica += f'O tipo da resposta esperado é {type(fatorial)}, mas sua função devolve {type(saida)}.'
-    assert fatorial == saida, f'Algo deu errado. \nAo calcular a área para o raio {n}, esperava {fatorial} mas obteve {saida}.\n{dica}'
+    saida = solution.calcula_fatorial(raio)
+    if type(saida) != type(area):
+        dica += f'O tipo da resposta esperado é {type(area)}, mas sua função devolve {type(saida)}.'
+    assert area == saida, f'Algo deu errado. \nAo calcular a área para o raio {raio}, esperava {area} mas obteve {saida}.\n{dica}'
