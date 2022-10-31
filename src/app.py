@@ -33,6 +33,7 @@ app.config['SECRET_KEY'] = "978FSFHASF8SUHFUAGF789SAGF9AS"
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{caminho_arq_db.resolve()}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
+import os
 
 
 #login_manager = LoginManager()
@@ -134,4 +135,5 @@ def mudapg(id_user_ativo, id_curso_ativo, tela):
 
 if __name__ == '__main__':
     db.init_app(app)
-    app.run(debug=True)
+    port = os.environ.get("PORT", 5000)
+    app.run(debug= False, host="0.0.0.0", port=port)
