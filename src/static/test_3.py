@@ -5,18 +5,20 @@ import solution
 
 
 @pytest.mark.parametrize("raio, area", [
-    pytest.param(raio, area, id=f'Raio: {raio}')
-    for raio, area in [
-        (1, pi*1**2),
-        (2, pi*2**2),
-        (3, pi*3**2),
-        (4, pi*4**2),
-        (5, pi*5**2),
-        (6, pi*6**2),
+    pytest.param(numero, primo_ou_nao, id=f'Raio: {numero}')
+    for numero, primo_ou_nao in [
+        (1, True),
+        (2, False),
+        (3, True),
+        (4, False),
+        (5, True),
+        (6, False),
+        (7, True),
+        (8, False)
     ]])
-def test_vários_raios(raio, area):
+def test_vários_raios(numero, primo):
     dica = ''
-    saida = solution.calcula_area_do_circulo(raio)
-    if type(saida) != type(area):
-        dica += f'O tipo da resposta esperado é {type(area)}, mas sua função devolve {type(saida)}.'
-    assert area == saida, f'Algo deu errado. \nAo calcular a área para o raio {raio}, esperava {area} mas obteve {saida}.\n{dica}'
+    saida = solution.calcula_primo(numero)
+    if type(saida) != type(primo):
+        dica += f'O tipo da resposta esperado é {type(primo)}, mas sua função devolve {type(saida)}.'
+    assert primo == saida, f'Algo deu errado. \nAo calcular a área para o raio {numero}, esperava {primo} mas obteve {saida}.\n{dica}'
