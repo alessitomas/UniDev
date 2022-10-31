@@ -78,3 +78,29 @@ function voltar() {
     window.location.reload()
   }
 
+
+  $(document).ready(function () {
+
+    $(function () {
+
+      var settings = {
+        "url": 'http://insper-unidev.herokuapp.com/terminal/'+'1'+'/curso/'+localStorage.getItem('id_curso_ativo').toString(),
+        "method": "GET",
+        "timeout": 0
+      };
+
+      $.ajax(settings).done(function () {
+        var x = localStorage.getItem('tela')
+        $("head").append(`<py-env>
+        - pytest
+        - pytest-reportlog
+        - paths:
+          - ../static/main2.py
+          - ../static/solution.py
+          - ../static/test_${x}.py
+      </py-env>`);
+      $("body").append(` <py-script src="../static/main2.py" ouput="pytest-output">
+      </py-script>`)    
+    });
+    });
+});
