@@ -16,9 +16,9 @@ import solution
         (7, True),
         (8, False)
     ]])
-def test_vários_raios(numero, primo):
+def test_vários_raios(raio, area):
     dica = ''
-    saida = solution.calcula_primo(numero)
-    if type(saida) != type(primo):
-        dica += f'O tipo da resposta esperado é {type(primo)}, mas sua função devolve {type(saida)}.'
-    assert primo == saida, f'Algo deu errado. \nAo calcular a área para o raio {numero}, esperava {primo} mas obteve {saida}.\n{dica}'
+    saida = solution.calcula_primo(raio)
+    if type(saida) != type(area):
+        dica += f'O tipo da resposta esperado é {type(area)}, mas sua função devolve {type(saida)}.'
+    assert area == saida, f'Algo deu errado. \nAo calcular a área para o raio {raio}, esperava {area} mas obteve {saida}.\n{dica}'
