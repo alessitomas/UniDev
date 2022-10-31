@@ -59,19 +59,6 @@ def menu():
 def form_usuario():
     return render_template('registro.html')
 
-    # if request.method == 'POST':
-    #     nome = request.form['name']
-    #     username = request.form['username']
-    #     email = request.form['email']
-    #     senha = request.form['pass']
-    
-    #     student = UsuarioModel(nome=nome,
-    #                       username=username,
-    #                       email=email,
-    #                       senha=senha,
-    #                     )
-    #     student.save()
-    # return render_template('registro.html')
 
 @app.route('/cursos/')
 def cursos():
@@ -110,6 +97,9 @@ api.add_resource(Usuario, '/usuario/')
 api.add_resource(Terminal, '/terminal/<string:id_user_ativo>/curso/<string:id_curso_ativo>/')
 api.add_resource(Login, '/login/')
 
+
+
+
 @app.route('/terminal/<int:id_user_ativo>/curso/<int:id_curso_ativo>/exercicio/<int:tela>', methods=['POST'])
 def salvarexr(id_user_ativo, id_curso_ativo, tela):
     corpo = request.get_json( force=True)
@@ -119,11 +109,11 @@ def salvarexr(id_user_ativo, id_curso_ativo, tela):
     resposta = RespostasModel(id_usuario=id_user_ativo, id_curso=id_curso_ativo, tela=tela, resposta=corpo['exr'], id_exercicio=exr.id_exercicio)
     try:
         resposta.save()
-        return jsonify({'message': 'salvo com sucesso'})
+        return jsonify({'message': 'salvo com sucesso'}),200
     except:
-        return jsonify({'message': 'erro ao salvar'})
+        return jsonify({'message': 'erro ao salvar'}),500
 
-    return exr.toDict(),200
+
 
 
 @app.route('/mudarpg/<int:id_user_ativo>/curso/<int:id_curso_ativo>/exercicio/<int:tela>', methods=['get'])
@@ -137,7 +127,7 @@ def mudapg(id_user_ativo, id_curso_ativo, tela):
 
         return {'mensagem': "exercício não encontrado"}, 404
     else:
-        return {'curso_finalizado': True}
+        return {'curso_finalizado': True},200
 
 if __name__ == '__main__':
     db.init_app(app)
