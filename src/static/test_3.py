@@ -5,8 +5,8 @@ import solution
 
 
 @pytest.mark.parametrize("raio, area", [
-    pytest.param(numero, primo_ou_nao, id=f'Raio: {numero}')
-    for numero, primo_ou_nao in [
+    pytest.param(raio, area, id=f'Raio: {raio}')
+    for raio, area in [
         (1, True),
         (2, False),
         (3, True),

@@ -5,8 +5,8 @@ import solution
 
 
 @pytest.mark.parametrize("raio, area", [
-    pytest.param(n, fatorial, id=f'Raio: {n}')
-    for n, fatorial in [
+    pytest.param(raio, area, id=f'Raio: {raio}')
+    for raio, area in [
         (1, 1),
         (2, 2),
         (3, 6),
